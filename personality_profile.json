@@ -1,0 +1,650 @@
+{
+   "sanguinis": [
+      [
+         "animated",
+         "Penuh kehidupan, sering menggunakan isyarat tangan, lengan, dan wajah secara hidup"
+      ],
+      [
+         "playful",
+         "Penuh kesenangan dan selera humor yang baik"
+      ],
+      [
+         "sociable",
+         "Memandang orang lain sebagai kesempatan untuk bersikap manis dan menghibur"
+      ],
+      [
+         "convincing",
+         "Bisa merebut hati orang lain melalui pesona kepribadiannya"
+      ],
+      [
+         "refreshing",
+         "Memperbarui dan membantu atau membuat orang lain merasa senang"
+      ],
+      [
+         "spirited",
+         "Penuh kehidupan dan gairah"
+      ],
+      [
+         "promoter",
+         "Mendorong orang lain mengikuti atau bergabung melalui pesona kepribadiannya"
+      ],
+      [
+         "spontaneous",
+         "Impulsif, tidak dipikirkan terlebih dahulu, tidak dihambat oleh rencana"
+      ],
+      [
+         "optimistic",
+         "Meyakinkan dirinya dan orang lain bahwa segalanya akan beres"
+      ],
+      [
+         "funny",
+         "Punya rasa humor yang cemerlang, bisa membuat cerita menjadi menyenangkan"
+      ],
+      [
+         "delightful",
+         "Orang yang menyenangkan sebagai teman"
+      ],
+      [
+         "cheerful",
+         "Secara konsisten memiliki semangat tinggi dan mempromosikan kebahagiaan kepada orang lain"
+      ],
+      [
+         "inspiring",
+         "Mendorong orang lain untuk bekerja, terlibat, dan membuat seluruhnya menyenangkan"
+      ],
+      [
+         "demonstrative",
+         "Terang-terangan menyatakan emosi, tidak ragu menyentuh orang lain ketika bicara"
+      ],
+      [
+         "mixes easily",
+         "Menyukai pesta, tidak bisa menunggu bertemu orang lain, tidak menganggap orang lain asing"
+      ],
+      [
+         "talker",
+         "Terus menerus bicara, biasanya menceritakan kisah yang menghibur, merasa perlu mengisi kesunyian"
+      ],
+      [
+         "lively",
+         "Penuh kehidupan, kuat, penuh semangat"
+      ],
+      [
+         "cute",
+         "Tak ternilai harganya, dicintai, pusat perhatian"
+      ],
+      [
+         "popular",
+         "Orang yang menghidupkan pesta, sangat diinginkan menjadi tamu pesta"
+      ],
+      [
+         "bouncy",
+         "Kepribadian yang hidup, berlebihan, penuh tenaga"
+      ],
+      [
+         "brassy",
+         "Orang yang suka pamer, memperlihatkan apa yang gemerlapan dan kuat, terlalu bersuara"
+      ],
+      [
+         "undisciplined",
+         "Orang yang kurang keteraturannya memengaruhi hampir semua bidang kehidupannya"
+      ],
+      [
+         "repetitious",
+         "Menceritakan kembali kisah untuk menghibur, terus menerus memerlukan sesuatu untuk dikatakan"
+      ],
+      [
+         "forgetful",
+         "Punya ingatan kurang kuat, tidak mau repot mencatat secara mental hal-hal yang tidak menyenangkan"
+      ],
+      [
+         "interrupts",
+         "Lebih banyak bicara daripada mendengarkan, mulai bicara tanpa sadar orang lain sudah bicara"
+      ],
+      [
+         "unpredictable",
+         "Bergairah sesaat dan sedih pada saat berikutnya, bersedia membantu tapi menghilang, atau berjanji tapi lupa"
+      ],
+      [
+         "haphazard",
+         "Tidak punya cara yang konsisten untuk melakukan banyak hal"
+      ],
+      [
+         "permissive",
+         "Memperbolehkan orang lain melakukan apa saja untuk menghindari dirinya tidak disukai"
+      ],
+      [
+         "angered easily",
+         "Mengutarakan diri dengan merajuk dan berbuat berlebihan serta melupakannya seketika"
+      ],
+      [
+         "naive",
+         "Perspektif yang sederhana, kurang bijaksana atau pengertian tentang kehidupan yang mendalam"
+      ],
+      [
+         "wants credit",
+         "Merasa senang mendapat penghargaan atau persetujuan orang lain, menyukai tepuk tangan penonton"
+      ],
+      [
+         "talkative",
+         "Pembicara yang menghibur dan memaksa diri yang merasa sulit mendengarkan"
+      ],
+      [
+         "disorganized",
+         "Kurang kemampuan untuk membuat kehidupan teratur"
+      ],
+      [
+         "inconsistent",
+         "Tidak menentu, serba berlawanan, tindakan dan emosi tidak berdasarkan logika"
+      ],
+      [
+         "messy",
+         "Hidup dalam keadaan tidak teratur, tidak bisa menemukan banyak benda"
+      ],
+      [
+         "show-off",
+         "Perlu menjadi pusat perhatian, ingin dilihat"
+      ],
+      [
+         "loud",
+         "Orang yang tertawa atau suaranya bisa didengar diatas suara lainnya dalam ruangan"
+      ],
+      [
+         "scatterbrained",
+         "Tidak punya kekuatan untuk berkonsentrasi atau menaruh perhatian, pikirannya berubah-ubah"
+      ],
+      [
+         "restless",
+         "Menyukai kegiatan baru terus menerus karena tidak merasa senang melakukan hal yang sama"
+      ],
+      [
+         "changeable",
+         "Rentang perhatian yang pendek, memerlukan banyak perubahan dan variasi supaya tidak bosan"
+      ]
+   ],
+   "koleris": [
+      [
+         "adventurous",
+         "Mau melakukan suatu hal yang baru dan berani dengan tekad untuk menguasainya"
+      ],
+      [
+         "persuasive",
+         "Meyakinkan orang dengan logika dan fakta, bukannya pesona atau kekuasaan"
+      ],
+      [
+         "strong-willed",
+         "Orang yang yakin akan caranya sendiri"
+      ],
+      [
+         "competitive",
+         "Mengubah setiap situasi, kejadian, atau permainan menjadi kontes dan bermain untuk menang"
+      ],
+      [
+         "resourceful",
+         "Bisa bertindak cepat dan efektif hampir dalam semua situasi"
+      ],
+      [
+         "self-reliant",
+         "Orang mandiri yang bisa sepenuhnya mengandalkan kemampuan, penilaian, sumber dayanya sendiri"
+      ],
+      [
+         "positive",
+         "Mengetahui segalanya akan beres jika dia yang memimpin"
+      ],
+      [
+         "sure",
+         "Yakin, jarang ragu-ragu atau goyah"
+      ],
+      [
+         "outspoken",
+         "Bicara terang-terangan dan tanpa menahan diri"
+      ],
+      [
+         "forcefull",
+         "Mendominasi dan menyebabkan orang lain ragu-ragu untuk melawannya"
+      ],
+      [
+         "daring",
+         "Bersedia mengambil risiko, tidak kenal takut, berani"
+      ],
+      [
+         "confident",
+         "Percaya diri dan yakin akan kemampuan dan suksesnya sendiri"
+      ],
+      [
+         "independent",
+         "Memenuhi diri sendiri, mandiri, tidak begitu memerlukan bantuan"
+      ],
+      [
+         "decisive",
+         "Mempunyai kemampuan membuat penilaian yang cepat dan tuntas"
+      ],
+      [
+         "mover",
+         "Terdorong oleh keperluan untuk produktif, pemimpin yang diikuti orang lain"
+      ],
+      [
+         "tenacious",
+         "Memegang teguh, dengan keras kepala, dan tidak mau melepaskan sampai tujuan tercapai"
+      ],
+      [
+         "leader",
+         "Pemberi pengarahan, terdorong untuk memimpin"
+      ],
+      [
+         "chief",
+         "Memegang kepemimpinan dan mengharapkan orang lain mengikutinya"
+      ],
+      [
+         "productive",
+         "Terus-menerus bekerja atau mencapai sesuatu, merasa sulit beristirahat"
+      ],
+      [
+         "bold",
+         "Tidak kenal takut, berani, terus terang, tidak takut akan risiko"
+      ],
+      [
+         "bossy",
+         "Suka memerintah, mendominasi, kadang-kadang mengesalkan"
+      ],
+      [
+         "unsympathetic",
+         "Merasa sulit mengenali masalah atau sakit hati atau perasaan orang lain"
+      ],
+      [
+         "resistant",
+         "Berjuang, melawan, atau ragu menerima cara lain yang bukan caranya sendiri"
+      ],
+      [
+         "frank",
+         "Langsung, terus terang, tidak sungkan mengatakan apa yang dipikirkannya"
+      ],
+      [
+         "impatient",
+         "Merasa sulit bertahan untuk menghadapi kekesalan atau menunggu orang lain"
+      ],
+      [
+         "unaffectionate",
+         "Merasa sulit secara lisan atau fisik memperlihatkan kasih sayang dengan terbuka"
+      ],
+      [
+         "headstrong",
+         "Bersikeras memaksakan caranya sendiri"
+      ],
+      [
+         "proud",
+         "Punya harga diri tinggi dan menganggap dirinya selalu benar"
+      ],
+      [
+         "argumentative",
+         "Mengobarkan perdebatan karena biasanya dia benar, tidak peduli bagaimana situasinya"
+      ],
+      [
+         "nervy",
+         "Penuh keyakinan, semangat, dan keberanian, sering dalam pengertian negatif"
+      ],
+      [
+         "workaholic",
+         "Menetapkan tujuan secara agresif, harus terus produktif, tidak terdorong untuk sempurna tapi butuh pencapaian"
+      ],
+      [
+         "tactless",
+         "Kadang menyatakan dirinya dengan cara agak menyinggung perasaan dan kurang pertimbangan"
+      ],
+      [
+         "domineering",
+         "Memaksa mengambil kontrol atas situasi orang lain, biasanya mengatakan pada orang lain apa yang harus mereka lakukan"
+      ],
+      [
+         "intolerant",
+         "Tidak bisa tahan atau menerima sikap, pandangan, atau cara orang lain"
+      ],
+      [
+         "manipulative",
+         "Memengaruhi atau mengurus dengan cerdik demi keuntungannya sendiri, memaksakan kehendaknya"
+      ],
+      [
+         "stubborn",
+         "Bertekad memaksakan kehendaknya, tidak mudah dibujuk, keras kepala"
+      ],
+      [
+         "lord over",
+         "Tidak ragu mengatakan pada orang lain bahwa dirinya benar atau memegang kendali"
+      ],
+      [
+         "short-tempered",
+         "Punya kemarahan berdasarkan ketidaksabaran, marah ketika orang lain lambat atau tidak menyelesaikan tugas"
+      ],
+      [
+         "rash",
+         "Bertindak tergesa-gesa tanpa memikirkan dengan tuntas, biasanya karena ketidaksabaran"
+      ],
+      [
+         "crafty",
+         "Cerdik, orang yang selalu bisa menemukan cara untuk mencapai tujuan yang diinginkan"
+      ]
+   ],
+   "melankolis": [
+      [
+         "analytical",
+         "Suka menyelidiki bagian-bagian hubungan yang logis dan semestinya"
+      ],
+      [
+         "persistent",
+         "Melakukan sesuatu sampai selesai sebelum memulai lainnya"
+      ],
+      [
+         "self-sacrificing",
+         "Bersedia mengorbankan dirinya demi atau untuk memenuhi kebutuhan orang lain"
+      ],
+      [
+         "considerate",
+         "Menghargai keperluan dan perasaan orang lain"
+      ],
+      [
+         "respectful",
+         "Memperlakukan orang lain dengan rasa segan, kehormatan, dan penghargaan"
+      ],
+      [
+         "sensitive",
+         "Secara intensif memperhatikan orang lain dan apa yang terjadi"
+      ],
+      [
+         "planner",
+         "Mempersiapkan aturan-aturan yang terperinci sebelumnya dalam menyelesaikan suatu hal"
+      ],
+      [
+         "scheduled",
+         "Membuat rencana sehari-hari, tidak menyukai rencananya tergangguu"
+      ],
+      [
+         "orderly",
+         "Orang yang mengatur segalanya secara metodis dan sistematis"
+      ],
+      [
+         "faithful",
+         "Secara konsisten bisa diandalkan, teguh, setia, dan mengabdi tanpa alasan"
+      ],
+      [
+         "detailed",
+         "Melakukan segalanya secara berurutan dengan ingatan tentang segala hal yang terjadi"
+      ],
+      [
+         "cultured",
+         "Orang yang perhatiannya melibatkan tujuan intelektual dan artistik (teater, simfoni, balet)"
+      ],
+      [
+         "idealistic",
+         "Memvisualisasikan hal-hal dalam bentuk yang sempurna, dan perlu memenuhi standar itu sendiri"
+      ],
+      [
+         "deep",
+         "Intensif dan introspektif tanpa rasa senang kepada percakapan"
+      ],
+      [
+         "musical",
+         "Punya apresiasi dan komitmen mendalam untuk musik sebagai bentuk seni bukan kesenangan pertunjukan"
+      ],
+      [
+         "thoughtful",
+         "Orang yang tanggap dan mengingat kesempatan istimewa, cepat memberikan isyarat yang baik"
+      ],
+      [
+         "loyal",
+         "Setia kepada seseorang, gagasan, atau pekerjaan, kadang-kadang melampaui alasan"
+      ],
+      [
+         "chartmaker",
+         "Mengatur kehidupan, tugas, dan pemecahan masalah dengan membuat daftar, formulir, atau grafik"
+      ],
+      [
+         "perfectionist",
+         "Menempatkan standar tinggi pada dirinya dan orang lain, ingin segalanya pada urutan yang semestinya"
+      ],
+      [
+         "behaved",
+         "Konsisten ingin membawa dirinya di dalam batas-batas apa yang dirasakan semestinya"
+      ],
+      [
+         "bashful",
+         "Menghindari perhatian, akibat rasa malu"
+      ],
+      [
+         "unforgiving",
+         "Sulit memaafkan dan melupakan sakit hati atau ketidakadilan yang menimpa dirinya, biasa menyimpan dendam"
+      ],
+      [
+         "resentful",
+         "Sering memendam rasa tidak senang karena tersinggung oleh sesuatu yang sebenarnya"
+      ],
+      [
+         "fussy",
+         "Bersikeras tentang persoalan atau perincian sepele, minta perhatian besar pada perincian yang tidak penting"
+      ],
+      [
+         "insecure",
+         "Merasa sedih atau kurang kepercayaan"
+      ],
+      [
+         "unpopular",
+         "Orang yang intensitas dan tuntutannya akan kesempurnaan bisa membuat orang lain menjauhinya"
+      ],
+      [
+         "hard to please",
+         "Orang yang standarnya ditetapkan begitu tinggi sehingga orang lain sulit memuaskannya"
+      ],
+      [
+         "pessimistic",
+         "Sementara mengharapkan yang terbaik, orang ini biasanya melihat sisi buruk situasi terlebih dahulu"
+      ],
+      [
+         "alienated",
+         "Mudah merasa terasing dari orang lain, takut bila orang lain tidak senang bersamanya"
+      ],
+      [
+         "negative attitude",
+         "Orang yang sikapnya jarang positif, hanya melihat sisi buruk dari setiap situasi"
+      ],
+      [
+         "withdrawn",
+         "Orang yang menarik diri dan memerlukan banyak waktu untuk sendirian atau mengasingkan diri"
+      ],
+      [
+         "too sensitive",
+         "Terlalu introspektif dan mudah tersinggung jika disalahpahami"
+      ],
+      [
+         "depressed",
+         "Orang yang hampir sepanjang waktu merasa tertekan"
+      ],
+      [
+         "introvert",
+         "Orang yang pemikiran dan perhatiannya ditujukan ke dalam, hidup di dalam dirinya sendiri"
+      ],
+      [
+         "moody",
+         "Tidak mempunyai emosi yang tinggi, semangatnya menurun sekali, sering merasa tidak dihargai"
+      ],
+      [
+         "skeptical",
+         "Tidak mudah percaya, mempertanyakan motif dibalik kata-kata"
+      ],
+      [
+         "loner",
+         "Memerlukan banyak waktu pribadi dan cenderung menghindari orang lain"
+      ],
+      [
+         "suspicious",
+         "Cenderung mencurigai atau tidak mempercayai gagasan atau orang lain"
+      ],
+      [
+         "revengeful",
+         "Secara sadar atau tidak menyimpan dendam dan menghukum orang yang melanggar"
+      ],
+      [
+         "critical",
+         "Selalu mengevaluasi dan membuat penilaian, sering memikirkan atau menyatakan reaksi negatif"
+      ]
+   ],
+   "phlegmatis": [
+      [
+         "adaptable",
+         "Mudah menyesuaikan diri dan senang dalam setiap situasi"
+      ],
+      [
+         "peaceful",
+         "Tampak tidak terganggu dan tenang serta menghindari setiap bentuk kekacauan"
+      ],
+      [
+         "submissive",
+         "Mudah menerima pandangan/keinginan orang lain tanpa perlu mengemukakan pendapat sendiri"
+      ],
+      [
+         "controlled",
+         "Mempunyai perasaan emosional tetapi jarang memperlihatkannya"
+      ],
+      [
+         "reserved",
+         "Menahan diri dalam menunjukkan emosi atau antusiasme"
+      ],
+      [
+         "satisfied",
+         "Orang yang mudah menerima keadaan atau situasi apa saja"
+      ],
+      [
+         "patient",
+         "Tidak terpengaruh oleh penundaan, tetap tenang dan toleran"
+      ],
+      [
+         "shy",
+         "Pendiam, tidak mudah terseret ke dalam percakapan"
+      ],
+      [
+         "obliging",
+         "Bisa menerima apa saja. Orang yang cepat melakukannya dengan cara lain"
+      ],
+      [
+         "friendly",
+         "Orang yang menanggapi dan bukan orang yang punya inisiatif, jarang memulai percakapan"
+      ],
+      [
+         "diplomatic",
+         "Berurusan dengan orang lain secara penuh siasat, perasa, dan sabar"
+      ],
+      [
+         "consistent",
+         "Memiliki keseimbangan secara emosional, menanggapi sebagaimana yang diharapkan orang lain"
+      ],
+      [
+         "inoffensive",
+         "Tidak pernah mengatakan atau menyebabkan apa pun yang tidak menyenangkan"
+      ],
+      [
+         "dry humor",
+         "Memperlihatkan 'kepandaian bicara yang menggigit', biasanya bersifat sarkastis"
+      ],
+      [
+         "mediator",
+         "Konsisten mencari peranan merukunkan pertikaian supaya menghindari konflik"
+      ],
+      [
+         "tolerant",
+         "Mudah menerima pemikiran dan cara orang lain tanpa mengubahnya"
+      ],
+      [
+         "listener",
+         "Selalu bersedia mendengar apa yang orang lain katakan"
+      ],
+      [
+         "contented",
+         "Mudah puas dengan apa yang dimilikinya, jarang iri hati"
+      ],
+      [
+         "pleasant",
+         "Mudah bergaul, bersifat terbuka, mudah diajak bicara"
+      ],
+      [
+         "balanced",
+         "Kepribadian yang stabil dan mengambil tengah-tengah"
+      ],
+      [
+         "blank",
+         "Orang yang memperlihatkan sedikit ekspresi wajah atau emosi"
+      ],
+      [
+         "unenthusiastic",
+         "Cenderung tidak begairah, sering merasa bahwa bagaimanapun sesuatu tidak akan berhasil"
+      ],
+      [
+         "reticent",
+         "Tidak bersedia atau menolak ikut terlibat, terutama jika rumit"
+      ],
+      [
+         "fearful",
+         "Sering mengalami perasaan sangat khawatir, sedih, atau gelisah"
+      ],
+      [
+         "indecisive",
+         "Orang yang merasa sulit membuat keputusan apa saja"
+      ],
+      [
+         "uninvolved",
+         "Tidak punya keinginan untuk mendengarkan atau tertarik pada kelompok, aktivitas, atau kehidupan orang lain"
+      ],
+      [
+         "hesitant",
+         "Lambat dalam bergerak dan sulit ikut terlibat"
+      ],
+      [
+         "plain",
+         "Kepribadian tengah-tengah, tidak memperlihatkan banyak emosi jika ada"
+      ],
+      [
+         "aimless",
+         "Bukan orang yang menetapkan tujuan, tidak ingin menjadi orang yang seperti itu"
+      ],
+      [
+         "nonchalant",
+         "Mudah bergaul, tidak peduli, masa bodoh"
+      ],
+      [
+         "worrier",
+         "Secara konsisten merasa tidak tetap, terganggu, atau resah"
+      ],
+      [
+         "timid",
+         "Mundur dari situasi sulit"
+      ],
+      [
+         "doubtful",
+         "Punya ciri khas selalu tidak tetap dan kurang yakin bahwa suatu hal akan berhasil"
+      ],
+      [
+         "indifferent",
+         "Merasa bahwa kebanyakan hal tidak penting dalam satu atau lain cara"
+      ],
+      [
+         "mumbles",
+         "Bicara pelan jika didesak, tidak mau repot-repot bicara dengan jelas"
+      ],
+      [
+         "slow",
+         "Tidak sering bertindak atau berpikir dengan cepat, sangat mengganggu"
+      ],
+      [
+         "lazy",
+         "Menilai pekerjaan/kegiatan dengan ukuran berapa banyak tenaga yang diperlukannya"
+      ],
+      [
+         "sluggish",
+         "Lambat untuk memulai, perlu dorongan untuk termotivasi"
+      ],
+      [
+         "reluctant",
+         "Tidak bersedia atau melawan keharusan ikut terlibat"
+      ],
+      [
+         "compromising",
+         "Sering mengendurkan pendiriannya bahkan ketika benar, untuk menghindari konflik"
+      ]
+   ]
+}

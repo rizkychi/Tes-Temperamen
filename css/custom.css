@@ -1,0 +1,25 @@
+/*============================================================================================*/
+/* Your custom styles below */
+/*============================================================================================*/
+.header-custom {
+    padding: 5px 10px !important;
+}
+.icon-menu-custom {
+    margin: 10px !important;
+}
+.avatar-custom {
+    max-width: 40px !important;
+    max-height: 40px !important;
+    min-width: 20px !important;
+    min-height: 20px !important;
+}
+.question-number {
+    display: none;
+}
+.hide-custom {
+    display: none !important;
+}
+#personalityResult ul {
+    list-style-type: none;
+    padding: 0;
+}

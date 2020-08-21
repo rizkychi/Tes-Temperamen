@@ -1,0 +1,74 @@
+[
+   {
+      "name": "Sanguinis",
+      "alias": "Si Populer",
+      "character": "Ekstrovert - Pembicara - Optimis",
+      "desc": "Sanguinis merupakan pribadi yang ‘super’ terbuka dan senang menjadi pusat perhatian orang-orang. Mereka sangat mudah untuk memulai percakapan dengan orang asing. Orang sanguinis sering menggunakan gestur dan bagian tubuh ketika berbicara untuk meyakinkan orang lain. Dengan tingkah cerianya, mereka juga senang untuk membuat orang disekitarnya tertawa.",
+      "strength": [
+         "Mudah bergaul/berteman dengan siapa saja tanpa mengenal usia",
+         "Optimis & antusias akan pengalaman baru",
+         "Ramah dan bersahabat"
+      ],
+      "weakness": [
+         "Senang membesar - besarkan suatu hal",
+         "Senang bicara dan tidak bisa diam",
+         "Egois dan senang mendominasi",
+         "Kurang disiplin waktu"
+      ]
+   },
+   {
+      "name": "Koleris",
+      "alias": "Si Kuat",
+      "character": "Ekstrovert - Pelaku - Optimis",
+      "desc": "Koleris merupakan pribadi dengan sikap yang sangat dominan. Pembicaraan dengan mereka tidak akan bertele-tele karena si koleris tidak menyukai basa-basi. Tipe ini terlahir sebagai pemimpin, jadi mereka sangat goal-oriented dan mengatur segala sesuatunya agar mencapai tujuan.",
+      "strength": [
+         "Berorientasi pada tujuan",
+         "Memiliki pemikiran yang analitis dan logis",
+         "Mandiri dan tidak bergantung pada orang lain",
+         "Memiliki kemampuan sebagai leader untuk mengambil keputusan, memimpin, mengorganisir, dan mampu diandalkan"
+      ],
+      "weakness": [
+         "Suka mengatur dan memerintah orang (bossy)",
+         "Tidak sabar dan cepat marah",
+         "Tidak memiliki banyak teman",
+         "Menganggap dirinya selalu benar sehingga cenderung merendahkan atau menyinggung orang lain"
+      ]
+   },
+   {
+      "name": "Melankolis",
+      "alias": "Si Sempurna",
+      "character": "Introvert - Pemikir - Pesimis",
+      "desc": "Sosok ini kurang menyukai perhatian publik dan lebih memilih sebagai orang dibalik layar. Tipe ini merupakan pribadi yang penuh pemikiran dan senang menganalisis sesuatu secara mendalam. Si melankolis cenderung menetapkan standar tinggi dan menginginkan semuanya teratur dan rapi.",
+      "strength": [
+         "Membuat rincian detail sesuatu sehingga semua terjadwal sesuai dengan rencana",
+         "Pemikiran yang analitis dan mendalam",
+         "Tingkat kepedulian yang sangat tinggi bahkan dengan sukarela menjadi tempat curhat orang lain dan memberi solusi permasalahannya",
+         "Tidak segan-segan mengorbankan diri demi orang lain"
+      ],
+      "weakness": [
+         "Kurang menyukai dan menghindari eksplorasi hal baru",
+         "Lebih nyaman dengan zona aman",
+         "Selalu ingin semuanya sempurna",
+         "Cenderung pribadi yang pesimis dan curiga karena melihat suatu hal dari segi negatifnya saja",
+         "Terlalu lama menghabiskan waktu untuk berpikir"
+      ]
+   },
+   {
+      "name": "Phlegmatis",
+      "alias": "Si Cinta Damai",
+      "character": "Introvert - Pengamat - Pesimis",
+      "desc": "Tipe ini merupakan kepribadian yang cinta damai sehingga menghindari hal-hal yang dapat menyebabkan pertengkaran. Orang plegmatis adalah pendengar yang baik dan sabar dalam menghadapi orang lain. Karena cenderung terlalu simpatik, si plegmatis kurang begitu tegas dalam mengambil sikap.",
+      "strength": [
+         "Tidak suka menyinggung orang lain",
+         "Cinta damai dan tidak menyukai konflik/pertengkaran/drama",
+         "Tidak banyak bicara akan tetapi lebih bijaksana",
+         "Pendengar yang baik"
+      ],
+      "weakness": [
+         "Kurang antusias akan hal baru",
+         "Terlalu takut dan khawatir tentang hal-hal di hidupnya",
+         "Pemalu dan pendiam",
+         "Senang menunda-nunda"
+      ]
+   }
+]
