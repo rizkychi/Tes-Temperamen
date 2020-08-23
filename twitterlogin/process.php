@@ -9,7 +9,7 @@ if(isset($_REQUEST['oauth_token']) && $_SESSION['token']  !== $_REQUEST['oauth_t
 
 	//If token is old, distroy session and redirect user to index.php
 	session_destroy();
-	header("Location: $url/?p=login.php");
+	header("Location: $url/?p=login");
 	
 }elseif(isset($_REQUEST['oauth_token']) && $_SESSION['token'] == $_REQUEST['oauth_token']) {
 
@@ -33,7 +33,7 @@ if(isset($_REQUEST['oauth_token']) && $_SESSION['token']  !== $_REQUEST['oauth_t
 		//Unset no longer needed request tokens
 		unset($_SESSION['token']);
 		unset($_SESSION['token_secret']);
-		header("Location: $url/?p=login.php");
+		header("Location: $url/?p=personality");
 	}else{
 		die("error, try again later!");
 	}
@@ -42,7 +42,7 @@ if(isset($_REQUEST['oauth_token']) && $_SESSION['token']  !== $_REQUEST['oauth_t
 
 	if(isset($_GET["denied"]))
 	{
-		header("Location: $url/?p=login.php");
+		header("Location: $url/?p=login");
 		die();
 	}
 

@@ -42,9 +42,17 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Testra | Tes Temperamen">
-    <meta name="author" content="Rizkychi">
-    <title>Testra</title>
+    <meta name="description" content="Dengan Testra kamu dapat mengetahui tipe temperamenmu dalam 5 menit.">
+	<meta name="author" content="Rizkychi">
+	
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:description" content="Dengan Testra kamu dapat mengetahui tipe temperamenmu dalam 5 menit." />
+	<meta name="twitter:title" content="Tes Temperamenmu Sekarang!" />
+	<meta name="twitter:site" content="@rizkychi_" />
+	<meta name="twitter:image" content="http://testra.masrizky.com/img/people.jpg" />
+	<meta name="twitter:creator" content="@rizkychi_" />
+
+		<title>Testra</title>
 
     <!-- Favicons-->
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
@@ -84,23 +92,25 @@
 	
 	<!-- Header -->
 	<header class="header-custom">
-		<div class="container-fluid">
+		<div class="container">
 		    <div class="row">
                 <div class="col-12">
 					<nav class="navbar navbar-expand-lg justify-content-between">
-						<a class="navbar-brand">Testra</a>
+						<a class="navbar-brand">
+							<img src="img/personality/testra_logo.png" style="height:40px" alt="Testra">
+						</a>
 						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
 							<span class="text-secondary h3 icon-menu icon-menu-custom"></span>
 						</button>
 						<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
 							<ul class="navbar-nav mr-auto mt-2 mt-lg-0 text-center">
-							<li class="nav-item active">
+							<li class="nav-item <?php echo ($page == 'home') ? 'active-custom': ''?>">
 								<a class="nav-link" href="?p=home">Home <span class="sr-only">(current)</span></a>
 							</li>
-							<li class="nav-item">
+							<li class="nav-item <?php echo ($page == 'personality') ? 'active-custom': ''?>">
 								<a class="nav-link" href="?p=personality">Mulai tes</a>
 							</li>
-							<li class="nav-item">
+							<li class="nav-item <?php echo ($page == 'about') ? 'active-custom': ''?>">
 								<a class="nav-link" href="?p=about">Tentang</a>
 							</li>
 							</ul>
@@ -127,23 +137,7 @@
 	<!-- /footer -->
 	
 	<!-- Modal terms -->
-	<div class="modal fade" id="terms-txt" tabindex="-1" role="dialog" aria-labelledby="termsLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="termsLabel">Terms and conditions</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			  <span aria-hidden="true">&times;</span>
-			</button>
-				</div>
-				<div class="modal-body">
-					<p>Lorem ipsum dolor sit amet, in porro albucius qui, in <strong>nec quod novum accumsan</strong>, mei ludus tamquam dolores id. No sit debitis meliore postulant, per ex prompta alterum sanctus, pro ne quod dicunt sensibus.</p>
-					<p>Lorem ipsum dolor sit amet, in porro albucius qui, in nec quod novum accumsan, mei ludus tamquam dolores id. No sit debitis meliore postulant, per ex prompta alterum sanctus, pro ne quod dicunt sensibus. Lorem ipsum dolor sit amet, <strong>in porro albucius qui</strong>, in nec quod novum accumsan, mei ludus tamquam dolores id. No sit debitis meliore postulant, per ex prompta alterum sanctus, pro ne quod dicunt sensibus.</p>
-					<p>Lorem ipsum dolor sit amet, in porro albucius qui, in nec quod novum accumsan, mei ludus tamquam dolores id. No sit debitis meliore postulant, per ex prompta alterum sanctus, pro ne quod dicunt sensibus.</p>
-				</div>
-			</div>
-		</div>
-	</div>
+	<?php include 'modal.php';?>
 	<!-- /Modal terms -->
 	
 	<!-- COMMON SCRIPTS -->
@@ -152,7 +146,7 @@
 	<script src="js/menu.js"></script>
 	<script src="js/main.js"></script>
 	<script src="js/wizard_func_without_branch.js"></script>	
-
+	
 	<script>
 		var time = 0;
 		function timer() {
@@ -162,10 +156,10 @@
 
 		function showProgress(val) {
 			if (val == 0) {
-				$("#progressInfo").css('visibility', 'hidden');
+				//$("#progressInfo").css('visibility', 'hidden');
 				$(".forward").text('Mulai');
 			} else {
-				$("#progressInfo").css('visibility', 'visible');
+				//$("#progressInfo").css('visibility', 'visible');
 				$(".forward").text('Selanjutnya');
 			}
 		}
@@ -228,6 +222,13 @@
 					echo   '$(".step").hide();
 							$("#bottom-wizard").hide();
 							$("#personalityResult").show();';
+				}
+			?>
+
+			<?php
+				//show modal dialog
+				if ($page == 'home') {
+					echo '$("#modal-txt").modal();';
 				}
 			?>
 		});

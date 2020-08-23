@@ -6,6 +6,8 @@
 	$profile_image_url  = '';
 	$tweet_count		= 0;
 	$personality_type   = 0; //dummy
+	$tested				= false; //dummy
+	$tweet_text			= urlencode('Yuk ketahui tipe temperamenmu dalam 5 menit! ada giveaway juga lho. Jangan sampai ga ikutan. #Testra2020 #Giveaway http://testra.masrizky.com/');
 	
 
 	if(isset($_SESSION['status']) && $_SESSION['status'] == 'verified') {
@@ -71,7 +73,7 @@
 		}
 	} else {
 		//Display login page
-		//header("Location: $url/?p=login");
+		header("Location: $url/?p=login");
 	}
 
 	//PERSONALITY QUESTION
@@ -111,27 +113,29 @@
 	}
 
 	//PERSONALITY RESULT
-	//load file from json
-	$loadFile = file_get_contents("personality_traits.json");
-	if ($loadFile === false) {
-		echo 'load failed';
-		die();
-	}
+	if ($tested) {
+		//load file from json
+		$loadFile = file_get_contents("personality_traits.json");
+		if ($loadFile === false) {
+			echo 'load failed';
+			die();
+		}
 
-	//decode json
-	$personality_traits = json_decode($loadFile, true);
-	if ($personality_traits === null) {
-		echo 'decode error';
-		die();
-	}
+		//decode json
+		$personality_traits = json_decode($loadFile, true);
+		if ($personality_traits === null) {
+			echo 'decode error';
+			die();
+		}
 
-	//store into variabel
-	$personality_name		= $personality_traits[$personality_type]['name'];
-	$personality_alias		= $personality_traits[$personality_type]['alias'];
-	$personality_character	= $personality_traits[$personality_type]['character'];
-	$personality_desc		= $personality_traits[$personality_type]['desc'];
-	$personality_strength	= $personality_traits[$personality_type]['strength'];
-	$personality_weakness	= $personality_traits[$personality_type]['weakness'];
+		//store into variabel
+		$personality_name		= $personality_traits[$personality_type]['name'];
+		$personality_alias		= $personality_traits[$personality_type]['alias'];
+		$personality_character	= $personality_traits[$personality_type]['character'];
+		$personality_desc		= $personality_traits[$personality_type]['desc'];
+		$personality_strength	= $personality_traits[$personality_type]['strength'];
+		$personality_weakness	= $personality_traits[$personality_type]['weakness'];
+	}
 ?>
 <main>
 	<div class="container">
@@ -145,25 +149,25 @@
 						<div class="col">
 							<div class="card">
 								<div class="card-body row align-items-center justify-content-between">
-									<div class="col-2">
+									<div class="col-6 col-lg-2 my-2 my-lg-0">
 										<div class="text-center">
 											<img src="<?php echo $profile_image_url ?>" class="rounded-circle img-fluid avatar-custom"  alt="<?php echo $twitter_fullname ?>">
 										</div>
 									</div>
-									<div class="col-4">
+									<div class="col-6 col-lg-4 my-2 my-lg-0">
 										<div class="float-left">
 											<?php echo $twitter_fullname.' (@'.$twitter_username.')' ?>
 										</div>
 									</div>
-									<div class="col-4" id="progressInfo">
+									<div class="col-12 col-lg-4 my-2 my-lg-0 px-5 px-lg-0" id="progressInfo">
 										<span>Soal <span class="progress-count">0</span>/<span class="progress-count-max"></span></span>
 										<div class="progress mt-1">
 											<div class="progress-bar progress-bar-striped progress-bar-animated" id="test-progress" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
 										</div>
 									</div>
-									<div class="col-2">
+									<div class="col-12 col-lg-2 my-2 my-lg-0">
 										<div class="text-center">
-											<a href="/?act=logout" class="btn btn-sm btn-danger">Keluar</a>
+											<a href="/?act=logout" class="btn btn-sm btn-danger text-white">Keluar</a>
 										</div>
 									</div>
 								</div>
@@ -229,47 +233,57 @@
 					<!-- /Question step -->
 
 					<!-- Personality Result -->
-					<div class="row mt-4" id="personalityResult">
-						<div class="col">
-							<div class="card p-5">
-								<div class="row justify-content-center">
-									<div class="col-12 col-lg-8 text-center">
-										<h4><?php echo $twitter_fullname ?> adalah <?php echo $personality_alias ?></h4>
-									
-										<h4><?php echo $personality_name ?></h4>
-										<h5 class="text-primary"><?php echo $personality_character ?></h5>
-										<p><?php echo $personality_desc ?></p>
-										
-										<div class="row">
-											<div class="col">
-												<h5 class="text-success">Kekuatan</h5>
-												<ul>
-													<?php
-														foreach ($personality_strength as $val) {
-															echo '<li>'.$val.'</li>';
-														}
-													?>
-												</li>
-											</div>
-											<div class="col">
-												<h5 class="text-danger">Kelemahan</h5>
-												<ul>
-													<?php
-														foreach ($personality_weakness as $val) {
-															echo '<li>'.$val.'</li>';
-														}
-													?>
-												</li>
+					<?php 
+						if ($tested) {
+							?>
+								<div class="row mt-4" id="personalityResult">
+									<div class="col">
+										<div class="card p-5">
+											<div class="row justify-content-center">
+												<div class="col-12 col-lg-8 text-center">
+													<h4><?php echo $twitter_fullname ?> adalah <?php echo $personality_alias ?></h4>
+													<img class="my-3" src="img/personality/<?php echo $personality_type?>.png" class="rounded-circle" alt="<?php echo $personality_name ?>">
+													<h4><?php echo $personality_name ?></h4>
+													<h5 class="text-primary mt-4"><?php echo $personality_character ?></h5>
+													<p><?php echo $personality_desc ?></p>
+													
+													<div class="row">
+														<div class="col-12 col-lg-6">
+															<h5 class="text-success">Kekuatan</h5>
+															<ul>
+																<?php
+																	foreach ($personality_strength as $val) {
+																		echo '<li>'.$val.'</li>';
+																	}
+																?>
+															</li>
+														</div>
+														<div class="col-12 col-lg-6">
+															<h5 class="text-danger">Kelemahan</h5>
+															<ul>
+																<?php
+																	foreach ($personality_weakness as $val) {
+																		echo '<li>'.$val.'</li>';
+																	}
+																?>
+															</li>
+														</div>
+													</div>
+
+													<!-- <h6 class="mt-5">Kamu tidak yakin dengan temperamenmu? tenang saja kamu bisa mengulanginya.</h6>
+													<a href="<?php //echo $url.'/?act=test'?>" class="btn btn-sm btn-success">Ulangi tes</a> -->
+													<div class="row justify-content-center px-2">
+														<div class="col-12 col-lg-8"><h6 class="mt-5">Penasaran dengan tipe temperamen temanmu?</h6>
+														<a href="" class="twitter btn-custom" onclick="popUp=window.open('https://twitter.com/share?url=<?php echo $tweet_text;?>', 'popupwindow', 'scrollbars=yes,width=800,height=400');popUp.focus();return false"><i class="icon-twitter"></i> Tag temanmu untuk ikutan tes!</a></div>
+													</div>
+												</div>
 											</div>
 										</div>
-
-										<!-- <h6 class="mt-5">Kamu tidak yakin dengan temperamenmu? tenang saja kamu bisa mengulanginya.</h6>
-										<a href="<?php //echo $url.'/?act=test'?>" class="btn btn-sm btn-success">Ulangi tes</a> -->
 									</div>
 								</div>
-							</div>
-						</div>
-					</div>
+							<?php
+						}
+					?>
 				</div>
 				<!-- /middle-wizard -->
 				<div id="bottom-wizard">
