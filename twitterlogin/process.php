@@ -1,5 +1,6 @@
 <?php
 session_start();
+ob_start();
 require_once '../config.php';
 include_once("config.php");
 include_once("inc/twitteroauth.php");
@@ -64,5 +65,5 @@ if(isset($_REQUEST['oauth_token']) && $_SESSION['token']  !== $_REQUEST['oauth_t
 		die("error connecting to twitter! try again later!");
 	}
 }
+ob_end_flush();
 ?>
-

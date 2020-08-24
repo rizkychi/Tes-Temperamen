@@ -1,5 +1,6 @@
 <?php
 	session_start();
+	ob_start();
 	require_once 'config.php';
 	include_once 'twitterlogin/config.php';
 	include_once 'twitterlogin/inc/twitteroauth.php';
@@ -256,3 +257,6 @@
 	
 </body>
 </html>
+<?php
+	ob_end_flush();
+?>
