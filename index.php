@@ -55,7 +55,7 @@
 		<title>Testra</title>
 
     <!-- Favicons-->
-    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="img/fav.png" type="image/x-icon">
     <link rel="apple-touch-icon" type="image/x-icon" href="img/apple-touch-icon-57x57-precomposed.png">
     <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="img/apple-touch-icon-72x72-precomposed.png">
     <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="img/apple-touch-icon-114x114-precomposed.png">
@@ -156,10 +156,12 @@
 
 		function showProgress(val) {
 			if (val == 0) {
-				//$("#progressInfo").css('visibility', 'hidden');
+				$("#progressInfo").css('visibility', 'hidden');
+				$("#progressInfo").addClass('shrink-height');
 				$(".forward").text('Mulai');
 			} else {
-				//$("#progressInfo").css('visibility', 'visible');
+				$("#progressInfo").css('visibility', 'visible');
+				$("#progressInfo").removeClass('shrink-height');
 				$(".forward").text('Selanjutnya');
 			}
 		}
@@ -180,6 +182,7 @@
 			$(".progress-count").text(count);
 			$(".progress-count-max").text(max);
 			$("#test-progress").attr('aria-valuenow', progress).css('width', progress+'%');
+			$("#test-progress").text(progress + '%');
 
 			$(".forward, .backward").click(function(){
 				count = $(".current").children('.question-number').text();
@@ -199,6 +202,7 @@
 				}
 
 				$("#test-progress").attr('aria-valuenow', progress).css('width', progress+'%');
+				$("#test-progress").text(progress + '%');
 				$(".progress-count").text(count);
 			});
 

@@ -43,6 +43,17 @@
 				<aside class="col-lg-4">
 					<div class="more_padding_left">
 						<div class="widget last" id="follow">
+							<h4>Kontak</h4>
+							<ul>
+								<li><a href="mailto:hai@masrizky.com"><i class="icon-mail-alt"></i>Email 1</a></li>
+								<li><a href="mailto:rizkynhae@gmail.com"><i class="icon-mail-alt"></i>Email 2</a></li>
+							</ul>
+						</div>
+						<!-- /follow -->
+					</div>
+					<!-- /more padding left -->
+					<div class="more_padding_left">
+						<div class="widget last" id="follow">
 							<h4>Ikuti kami</h4>
 							<ul>
 								<li><a href="https://www.facebook.com/nhaegakure"><i class="icon-facebook"></i>Facebook</a></li>

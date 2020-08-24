@@ -8,8 +8,8 @@
         </button>
             </div>
             <div class="modal-body">
-                <h5 class="text-center text-success">HADIAH Senilai 100.000</h5>
-                <p class="text-center"><i>(Untuk 2 orang pemenang @50.000)</i></p>
+                <h5 class="text-center text-success">HADIAH Senilai 200.000</h5>
+                <p class="text-center"><i>(Untuk 4 orang pemenang @50.000)</i></p>
                 <p class="mb-2 mt-4 text-primary"><strong>Syarat dan ketentuan</strong></p>
                 <ol>
                     <li>Gunakan aplikasi ini untuk mengetahui temperamenmu</li>

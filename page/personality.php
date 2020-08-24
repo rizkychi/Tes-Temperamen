@@ -54,7 +54,7 @@
 			$result = array_count_values($answer);
 			$primary_result = array_keys($result, max($result))[0];
 
-			var_dump($primary_result);
+			//var_dump($primary_result);
 			
 			//get secondary result
 			$temp = $result;
@@ -79,6 +79,7 @@
 	//PERSONALITY QUESTION
 	//make number range 
 	$number = range(0,3);
+	$q_step = 2; //question per step (multiples of 2)
 
 	//load file from json
 	$loadFile = file_get_contents("personality_profile.json");
@@ -160,8 +161,8 @@
 										</div>
 									</div>
 									<div class="col-12 col-lg-4 my-2 my-lg-0 px-5 px-lg-0" id="progressInfo">
-										<span>Soal <span class="progress-count">0</span>/<span class="progress-count-max"></span></span>
-										<div class="progress mt-1">
+										<!-- <span class="progress-percent">Soal <span class="progress-count">0</span>/<span class="progress-count-max"></span></span> -->
+										<div class="progress ">
 											<div class="progress-bar progress-bar-striped progress-bar-animated" id="test-progress" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
 										</div>
 									</div>
@@ -188,8 +189,8 @@
 									<ol>
 										<li>Dalam masing-masing deret empat kata ke samping berikut ini, pilih salah satu kata yang paling sering cocok dengan dirimu.</li>
 										<li>Setiap kata memakai bahasa Inggris dan definisi dibawahnya memakai bahasa Indonesia</li>
-										<li>Pastikan kamu memilih di setiap nomor soal.</li>
-										<li>Terdapat 40 nomor soal (20 soal merupakan kekuatanmu dan 20 sisanya merupakan kelemahanmu) dengan masing-masing empat kata jawaban.</li>
+										<li>Pastikan kamu memilih di setiap baris soal.</li>
+										<li>Terdapat 40 baris soal (20 soal merupakan kekuatanmu dan 20 sisanya merupakan kelemahanmu) dengan masing-masing empat kata jawaban.</li>
 										<li>Tidak ada jawaban benar atau salah, jadi jujurlah pada saat memilih.</li>
 										<li>Jika kamu tidak yakin kata mana yang paling cocok, tanyakan pada teman atau keluargamu, dan pikirkan apa jawabanmu ketika dirimu masih anak-anak.</li>
 									</ol>
@@ -200,32 +201,35 @@
 					<!-- Question step -->
 					<?php 
 						//show option
-						for ($i=0; $i < $size; $i++) {
-							shuffle($number); //shuffle number
+						for ($i=0; $i < $size; $i+=$q_step) {
 						?>
-							<div class="step <?php echo ($i == $size-1) ? 'submit':''?>">
-								<div class="question-number"><?php echo $i+1 ?></div>
+							<div class="step <?php echo ($i == $size-$q_step) ? 'submit':''?>">
+								<div class="question-number"><?php echo ($i+$q_step); ?></div>
 								<div class="question_title">
 									<h3>Manakah yang merupakan <?php echo ($i < $size/2) ? 'kekuatanmu': 'kelemahanmu' ?>?</h3>
-									<p>Pilih salah satu yang paling cocok dengan dirimu</p>
+									<p>Pilih salah satu pada tiap baris yang paling cocok dengan dirimu</p>
 								</div>
-								<div class="row justify-content-center">
 									<?php
-										for ($j=0; $j < 4; $j++) {
-											//get assessment value from array
-											$profile = $assessment [ $type [ $number [$j] ] ] [$i][0];
-											$desc    = $assessment [ $type [ $number [$j] ] ] [$i][1];
-											?>
-												<div class="col-lg-3">
-													<div class="item">
-														<input id="<?php echo 'question_'.$i.'_opt_'.$j ?>" name="<?php echo 'answer_'.$i ?>" type="radio" value="<?php echo $number [$j] ?>" class="required">
-														<label for="<?php echo 'question_'.$i.'_opt_'.$j ?>"><strong><?php echo $profile ?></strong><?php echo $desc ?></label>
+										for ($k=0; $k < $q_step; $k++) { 
+											echo '<div class="row justify-content-center">'; //row
+											shuffle($number); //shuffle number
+											for ($j=0; $j < 4; $j++) {
+												//get assessment value from array
+												$profile = $assessment [ $type [ $number [$j] ] ] [$i+$k][0];
+												$desc    = $assessment [ $type [ $number [$j] ] ] [$i+$k][1];
+												?>
+													<div class="col-lg-3">
+														<div class="item">
+															<input id="<?php echo 'question_'.($i+$k).'_opt_'.$j ?>" name="<?php echo 'answer_'.($i+$k); ?>" type="radio" value="<?php echo $number [$j] ?>" class="required">
+															<label for="<?php echo 'question_'.($i+$k).'_opt_'.$j ?>"><strong><?php echo $profile ?></strong><?php echo $desc ?></label>
+														</div>
 													</div>
-												</div>
-											<?php
+												<?php
+											}
+											echo '</div>';
+											echo '<hr class="style-two">';
 										}
 									?>
-								</div>
 								<!-- /row-->
 							</div>
 						<?php

@@ -55,10 +55,24 @@
 }
 .jumbotron {
     background-color: transparent;
-    background-image: url("../img/people.jpg");
+    background-image: url("../img/people.png");
   
     /* Center and scale the image nicely */
     background-position: bottom right;
     background-repeat: no-repeat;
     background-size: 50%;
+}
+.shrink-height {
+    height: 0px !important;
+}
+.progress-percent {
+    font-size: 12px;
+}
+hr.style-two {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.125), rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.125), rgba(0, 0, 0, 0));
+}
+#bottom-wizard {
+    padding: 10px 0 45px 0 !important;
 }
