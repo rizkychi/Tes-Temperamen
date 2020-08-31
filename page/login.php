@@ -1,7 +1,7 @@
 <main>
 	<div class="container">
 		<div id="wizard_container">
-            <div class="row justify-content-center mt-5 mb-5">
+            <div class="row justify-content-center pt-5 pb-5">
                 <div class="col-12 col-md-6 pt-5 pb-5">
 					<div class="card pt-4">
 						<div class="row px-3 px-md-5 py-3 justify-content-center">

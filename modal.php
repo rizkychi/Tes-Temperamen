@@ -7,7 +7,7 @@
             <span aria-hidden="true">&times;</span>
         </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="display:none">
                 <h5 class="text-center text-success">HADIAH Senilai 200.000</h5>
                 <p class="text-center"><i>(Untuk 4 orang pemenang @50.000)</i></p>
                 <p class="mb-2 mt-4 text-primary"><strong>Syarat dan ketentuan</strong></p>
@@ -28,6 +28,12 @@
                 </ol>
                 <p class="mb-2 mt-4 text-center text-danger"><strong>Testra hanya mengambil informasi username twittermu dan bukan informasi pribadimu (untuk dihubungi jika menang). Jadi tentu saja aman!</strong></p>
                 <h5 class="mb-2 mt-4 text-center">Jangan lupa ajak teman-temanmu untuk ikutan!</h5>
+            </div>
+            <div class="modal-body">
+                <p class="text-center">Pengumuman pemenang giveaway dapat dilihat di link berikut</p>
+                <p class="text-center">
+                    <a href="?p=giveaway" class="btn btn-primary btn-sm text-white">Winner</a>
+                </p>
             </div>
         </div>
     </div>

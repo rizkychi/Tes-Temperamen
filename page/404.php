@@ -1,7 +1,7 @@
 <main>
 	<div class="container">
 		<div id="wizard_container">
-            <div class="row justify-content-center mt-5 mb-5">
+            <div class="row justify-content-center pt-5 pb-5">
                 <div class="col-8 text-center pt-5 pb-5">
                     <h1 class="display-4">Halaman tidak ditemukan</h1>
                     <p>Halaman yang kamu tuju tidak ada atau sedang tidak bisa diakses.</p>
