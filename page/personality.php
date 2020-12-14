@@ -137,6 +137,20 @@
 		$personality_strength	= $personality_traits[$personality_type]['strength'];
 		$personality_weakness	= $personality_traits[$personality_type]['weakness'];
 	}
+	
+// 	if ($act == 'updateProtected') {
+// 	    $list_id = $db_user_info->selectUserId(0,5);
+
+// 		$count_updt = 0;
+// 		foreach ($list_id as $key => $val) {
+// 			$c_protect = $connection->get('https://api.twitter.com/1.1/users/show.json?user_id='.$val[0]);
+// 			echo $val[0]." - ".$c_protect->screen_name." - ".$c_protect->protected."<br>";
+// 			//$db_user_info->updateProtected($val[0], $c_protect->screen_name, $c_protect->protected);
+// 			$count_updt++;
+// 		}
+// 		echo 'success update '.$count_updt.' user';
+// 		die();
+// 	}
 ?>
 <main>
 	<div class="container">
