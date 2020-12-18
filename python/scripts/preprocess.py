@@ -2,7 +2,6 @@
 from preprocessing import cleaning, tokenization, stemming, stopWord, posTag, termFreq
 import json
 import sys
-import mysql
 
 # Get argument value
 val = sys.argv[1]
