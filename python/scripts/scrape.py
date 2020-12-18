@@ -2,6 +2,11 @@
 import sys
 import twint
 import json
+import os
+
+# Make temp directory if not exists
+if not os.path.exists('temp'):
+    os.makedirs('temp')
 
 # Get argument value
 val = sys.argv[1]
@@ -14,6 +19,7 @@ tweet = []
 c = twint.Config()
 c.Store_object    = True
 c.Hide_output     = True
+c.Limit           = 5000
 c.Custom['tweet'] = ['tweet']
 c.Search          = f'from:{val} lang:id'
 
