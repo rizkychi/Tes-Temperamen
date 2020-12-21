@@ -73,7 +73,7 @@
 		}
 	} else {
 		//Display login page
-		header("Location: $url/?p=login");
+		//header("Location: $url/?p=login");
 	}
 
 	//PERSONALITY QUESTION
@@ -189,8 +189,33 @@
 							</div>
 						</div>
 					</div>
+
+					<!-- Selection method step -->
+					<div class="" id="select_method">
+						<div class="question_title">
+							<h3>Mau jenis tes yang mana?</h3>
+							<p>Pilih salah satu aja ya</p>
+						</div>
+						<div class="row justify-content-center mb-5">
+							<div class="col-lg-4">
+								<div class="item">
+									<input id="select_assessment" type="radio" name="selection_method" value="assessment">
+									<label for="select_assessment"><img src="img/web_development_icon_1.svg" alt=""><strong>Assessment</strong>Tes kepribadian berupa kuesioner singkat berisi 40 soal.</label>
+								</div>
+							</div>
+							<div class="col-lg-4">
+								<div class="item">
+									<input id="select_automatic" type="radio" name="selection_method" value="automatic">
+									<label for="select_automatic"><img src="img/web_development_icon_2.svg" alt=""><strong>Automatic</strong>Kepribadianmu akan dicari secara otomatis oleh sistem.</label>
+								</div>
+							</div>
+						</div>
+						<!-- /row-->
+					</div>
+					<!-- /Selection method step -->
+
 					<!-- Instruction step -->
-					<div class="step instruct">
+					<div class="step instruct" id="instruct_assessment">
 						<div id="instruction"></div>
 						<div class="question_title">
 							<h3>Instruksi</h3>
@@ -212,6 +237,8 @@
 							</div>
 						</div>
 					</div>
+					<!-- /Instruction step -->
+					
 					<!-- Question step -->
 					<?php 
 						//show option
@@ -302,6 +329,7 @@
 							<?php
 						}
 					?>
+					<!-- /Personality Result -->
 				</div>
 				<!-- /middle-wizard -->
 				<div id="bottom-wizard">
@@ -317,3 +345,25 @@
 	<!-- /Container -->
 </main>
 <!-- /main -->
+
+<!-- Modal : Confirmation-->
+<div class="modal fade" id="confirm_method" tabindex="-1" role="dialog" aria-labelledby="confirm_methodTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLongTitle">Ketahui temperamenmu dengan satu kali klik!</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				Setelah klik tombol "Mulai" di bawah, sistem akan memulai proses untuk mencari tahu temperamen dan kepribadianmu.
+			</div>
+			<div class="modal-footer justify-content-center">
+				<div class="col-4">
+					<button type="button" class="btn btn-primary btn-block" id="btnStartAutomatic">Mulai</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

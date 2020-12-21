@@ -106,6 +106,29 @@
 	<div id="loader_form">
 		<div data-loader="circle-side-2"></div>
 	</div><!-- /loader_form -->
+
+	<div id="processLoading">
+		<!-- <div class="processContainer">
+			<h1 class="display-4">Tunggu sebentar ya</h1>
+			<div class="text-center">
+				<div class="spinner-border" role="status">
+					<span class="sr-only">Loading...</span>
+				</div>
+			</div>
+		</div> -->
+		<div class="container d-flex h-100">
+			<div class="row justify-content-center align-self-center w-100">
+				<div class="col text-center">
+					<h1 class="display-4">Tunggu sebentar ya</h1>
+						<!-- <div class="spinner-border text-primary my-5" style="width: 3rem; height: 3rem;" role="status">
+							<span class="sr-only">Loading...</span>
+						</div> -->
+						<img src="img/ame-roll.gif" alt="">
+					<h5 id="process_status">Mengunduh tweet pengguna...</h5>
+				</div>
+			</div>
+		</div>
+	</div><!-- /process_loading -->
 	
 	<!-- Header -->
 	<header class="header-custom">
@@ -182,6 +205,18 @@
 				$(".forward").text('Selanjutnya');
 			}
 		}
+
+		function switch_method(val) {
+			if (val == true) {
+				$("#select_method").show();
+				$("#instruct_assessment").hide();
+				$("#bottom-wizard").hide();
+			} else {
+				$("#select_method").hide();
+				$("#instruct_assessment").show();
+				$("#bottom-wizard").show();
+			}
+		}
 		
 		$(document).ready(function(){
 			var progress   = 0;
@@ -245,6 +280,25 @@
 							$("#personalityResult").show();';
 				}
 			?>
+
+			// selection method
+			switch_method(true);
+			
+			$('#select_method input:radio[name="selection_method"]').change(function() {
+				if ($(this).val() == 'assessment') {
+					switch_method(false);
+				} else if ($(this).val() == 'automatic') {
+					$('#confirm_method').modal('show');
+				} else {
+					alert('error');
+				}
+				$(this).prop('checked', false);
+			});
+
+			// process : automatic method
+			$("#btnStartAutomatic").click(function() {
+				$('#processLoading').fadeIn('slow'); 
+			})
 
 			<?php
 				//show modal dialog
