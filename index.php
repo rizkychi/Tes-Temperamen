@@ -120,11 +120,12 @@
 			<div class="row justify-content-center align-self-center w-100">
 				<div class="col text-center">
 					<h1 class="display-4">Tunggu sebentar ya</h1>
-						<!-- <div class="spinner-border text-primary my-5" style="width: 3rem; height: 3rem;" role="status">
+					<p>Jangan tutup jendela ini, mungkin prosesnya agak lama jadi tolong sabar. Ok?</p>
+						<div class="spinner-border text-primary mb-5 mt-3" style="width: 4rem; height: 4rem;" role="status">
 							<span class="sr-only">Loading...</span>
-						</div> -->
-						<img src="img/ame-roll.gif" alt="">
-					<h5 id="process_status">Mengunduh tweet pengguna...</h5>
+						</div>
+						<!-- <img src="img/ame-roll.gif" alt=""> -->
+					<h5 id="process_status">some text<span id="process_dot"></span></h5>
 				</div>
 			</div>
 		</div>
@@ -298,7 +299,19 @@
 			// process : automatic method
 			$("#btnStartAutomatic").click(function() {
 				$('#processLoading').fadeIn('slow'); 
+				startProcess();
 			})
+
+			// dot waiting
+			var dotContent = "";
+			var dotTimer = setInterval(function() {
+				if (dotContent.length >= 3) {
+					dotContent = '';
+				} else {
+					dotContent += '.';
+				} 
+				$("#process_dot").text(dotContent);
+			}, 1000);
 
 			<?php
 				//show modal dialog
@@ -307,6 +320,34 @@
 				}
 			?>
 		});
+
+		function startProcess() {
+			if (scrape() == 'ok') {
+				if (cleaning() == 'ok') {
+					if (predict() == 'ok') {
+						alert('done');
+					}
+				}
+			}
+		}
+
+		function scrape(val) {
+			$("#process_status").text("Mengunduh tweet pengguna");
+			//alert("scrape");
+			return "ok";
+		}
+
+		function cleaning(val) {
+			$("#process_status").text("Membersihkan dan mengubah tweet");
+			//alert("cleaning");
+			return "ok";
+		}
+
+		function predict(val) {
+			$("#process_status").text("Memprediksi jenis kepribadian pengguna");
+			//alert("predict");
+			return "ok";
+		}
 	</script>
 	
 </body>
