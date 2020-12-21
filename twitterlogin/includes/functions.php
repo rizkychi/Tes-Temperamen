@@ -42,15 +42,15 @@ class Users {
 		$result = mysqli_fetch_assoc($query);
 		return $result;
 	}
-
+	
 	function getListWinnerGA() {
 		$query = mysqli_query($this->connect,"SELECT u.username FROM personality p join users u on p.users_id = u.id where tweet >= 200 and p.modified < '2020-08-31 00:00:00' and u.id > 2") or die(mysqli_error($this->connect));
 		$result = mysqli_fetch_all($query);
 		return $result;
 	}
-
-	function selectUserId() {
-		$query = mysqli_query($this->connect,"SELECT u.oauth_uid FROM personality p join users u on p.users_id = u.id where p.traits is not null") or die(mysqli_error($this->connect));
+	
+	function selectUserId($step1, $step2) {
+		$query = mysqli_query($this->connect,"SELECT u.oauth_uid FROM personality p join users u on p.users_id = u.id where p.traits is not null and u.id between ".$step1." and ".$step2) or die(mysqli_error($this->connect));
 		$result = mysqli_fetch_all($query);
 		return $result;
 	}

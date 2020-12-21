@@ -1,4 +1,5 @@
 <?php
+die();
 //start session
 session_start();
 

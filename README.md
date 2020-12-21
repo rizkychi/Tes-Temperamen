@@ -1,4 +1,10 @@
 # Tes Temperamen (TESTRA)
 Aplikasi untuk mengetahui tipe temperamen/kepribadian.
 
-Demo: <a href="http://testra.masrizky.com">TESTRA</a>
+## Requirement
+- Python3
+- Twint
+- NLTK
+- PySastrawi
+- NLP_ID
+
