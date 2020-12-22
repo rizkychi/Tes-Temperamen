@@ -337,7 +337,7 @@
 			$("#process_status").text("Mengunduh tweet pengguna");
 			var status = "";
 			$.ajax({
-					url: "<?php echo $python_path;?>test.php",
+					url: "<?php echo $python_path;?>scrape.php",
 					type: "post",
 					data: { user: val } ,
 					success: function (response) {

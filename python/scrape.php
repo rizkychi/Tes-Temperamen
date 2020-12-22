@@ -1,4 +1,5 @@
 <?php
+    include_once 'config.php';
 
     if ($_POST && isset($_POST['user'])) {
         $val = $_POST['user'];
