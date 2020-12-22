@@ -322,14 +322,15 @@
 		});
 
 		function startProcess() {
-			if (scrape("chaesaroid") == 'OK') {
-				// if (cleaning() == 'ok') {
-				// 	if (predict() == 'ok') {
-				// 		alert('done');
-				// 	}
-				// }
-				console.log("OK")
-			}
+			// if (scrape("chaesaroid") == 'OK') {
+			// 	// if (cleaning() == 'ok') {
+			// 	// 	if (predict() == 'ok') {
+			// 	// 		alert('done');
+			// 	// 	}
+			// 	// }
+			// 	console.log("OK")
+			// }
+			scrape("chaesaroid");
 		}
 
 		function scrape(val) {
@@ -341,6 +342,7 @@
 					data: { user: val } ,
 					success: function (response) {
 						status = response;
+						console.log(response);
 					},
 					error: function(jqXHR, textStatus, errorThrown) {
 						console.log(textStatus, errorThrown);
