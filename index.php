@@ -322,19 +322,31 @@
 		});
 
 		function startProcess() {
-			if (scrape() == 'ok') {
-				if (cleaning() == 'ok') {
-					if (predict() == 'ok') {
-						alert('done');
-					}
-				}
+			if (scrape("chaesaroid") == 'OK') {
+				// if (cleaning() == 'ok') {
+				// 	if (predict() == 'ok') {
+				// 		alert('done');
+				// 	}
+				// }
+				console.log("OK")
 			}
 		}
 
 		function scrape(val) {
 			$("#process_status").text("Mengunduh tweet pengguna");
-			//alert("scrape");
-			return "ok";
+			var status = "";
+			$.ajax({
+					url: "<?php echo $python_path;?>test.php",
+					type: "post",
+					data: { user: val } ,
+					success: function (response) {
+						status = response;
+					},
+					error: function(jqXHR, textStatus, errorThrown) {
+						console.log(textStatus, errorThrown);
+					}
+			});
+			return status;
 		}
 
 		function cleaning(val) {
