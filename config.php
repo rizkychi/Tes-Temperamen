@@ -8,5 +8,5 @@
     $url  = "http://$host"; //internet
 
     // Path for python script (algorithm)
-    $python_path = '//seruva.masrizky.com/'
+    $python_path = '//seruva.masrizky.com/';
 ?>

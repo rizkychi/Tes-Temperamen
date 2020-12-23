@@ -335,20 +335,16 @@
 
 		function scrape(val) {
 			$("#process_status").text("Mengunduh tweet pengguna");
-			var status = "";
 			$.ajax({
-					url: "<?php echo $python_path;?>scrape.php",
-					type: "post",
-					data: { user: val } ,
+					url: "<?php echo $python_path;?>scrape?=chaesaroid",
+					type: "POST",
+					//data: { user: val } ,
+					dataType: 'json', // added data type
 					success: function (response) {
-						status = response;
 						console.log(response);
-					},
-					error: function(jqXHR, textStatus, errorThrown) {
-						console.log(textStatus, errorThrown);
+						cleaning();
 					}
 			});
-			return status;
 		}
 
 		function cleaning(val) {
