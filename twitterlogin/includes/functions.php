@@ -37,11 +37,17 @@ class Users {
 	function updatePersonality($oauth_provider, $oauth_uid, $traits, $sanguine, $choleric, $melancholy, $phlegmatic, $primary_result, $secondary_result, $timer, $tweet, $protected){
 		$update_person = mysqli_query($this->connect,"UPDATE personality p JOIN users u ON u.id = p.users_id SET p.traits = '".$traits."', p.sanguine = '".$sanguine."', p.choleric = '".$choleric."', p.melancholy = '".$melancholy."', p.phlegmatic = '".$phlegmatic."', p.primary_result = '".$primary_result."', p.secondary_result = '".$secondary_result."', p.timer = '".$timer."', p.tweet = '".$tweet."', p.protected = '".$protected."', p.modified = '".date("Y-m-d H:i:s")."' WHERE u.oauth_provider = '".$oauth_provider."' AND u.oauth_uid = '".$oauth_uid."'") or die(mysqli_error($this->connect));
 		//return true;
+		$this->updateType($oauth_provider, $oauth_uid, 'test');
 	}
 
 	function updatePrediction($oauth_provider, $oauth_uid, $data, $result){
 		$update_person = mysqli_query($this->connect,"UPDATE prediction_results p JOIN users u ON u.id = p.users_id SET p.data = '".$data."', p.result = '".$result."', p.predict_date = '".date("Y-m-d H:i:s")."' WHERE u.oauth_provider = '".$oauth_provider."' AND u.oauth_uid = '".$oauth_uid."'") or die(mysqli_error($this->connect));
 		//return true;
+		$this->updateType($oauth_provider, $oauth_uid, 'auto');
+	}
+
+	function updateType($oauth_provider, $oauth_uid, $type) {
+		$update_type = mysqli_query($this->connect,"UPDATE prediction_type p JOIN users u ON u.id = p.users_id SET p.type = '".$type."' WHERE u.oauth_provider = '".$oauth_provider."' AND u.oauth_uid = '".$oauth_uid."'") or die(mysqli_error($this->connect));
 	}
 
 	function retakePredict($oauth_provider, $oauth_uid) {
