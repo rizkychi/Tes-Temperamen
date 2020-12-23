@@ -25,6 +25,8 @@ class Users {
 		}else{
 			$insert = mysqli_query($this->connect,"INSERT INTO $this->tableName SET oauth_provider = '".$oauth_provider."', oauth_uid = '".$oauth_uid."', username = '".$username."', fname = '".$fname."', lname = '".$lname."', locale = '".$locale."', oauth_token = '".$oauth_token."', oauth_secret = '".$oauth_secret."', picture = '".$profile_image_url."', created = '".date("Y-m-d H:i:s")."', modified = '".date("Y-m-d H:i:s")."'") or die(mysqli_error($this->connect));
 			$insertPersonality = mysqli_query($this->connect,"INSERT INTO personality SET users_id =  ".mysqli_insert_id($this->connect).", created = '".date("Y-m-d H:i:s")."', modified = '".date("Y-m-d H:i:s")."'") or die(mysqli_error($this->connect));
+			$insertPrediction_result = mysqli_query($this->connect,"INSERT INTO prediction_results SET users_id =  ".mysqli_insert_id($this->connect)) or die(mysqli_error($this->connect));
+			$insertPrediction_type = mysqli_query($this->connect,"INSERT INTO prediction_type SET users_id =  ".mysqli_insert_id($this->connect)) or die(mysqli_error($this->connect));
 		}
 		
 		$query = mysqli_query($this->connect,"SELECT * FROM $this->tableName WHERE oauth_provider = '".$oauth_provider."' AND oauth_uid = '".$oauth_uid."'") or die(mysqli_error($this->connect));
@@ -37,10 +39,30 @@ class Users {
 		//return true;
 	}
 
-	function getUserInfo($oauth_provider, $oauth_uid){
-		$query = mysqli_query($this->connect,"SELECT p.traits, p.primary_result, p.secondary_result FROM personality p JOIN users u ON u.id = p.users_id WHERE u.oauth_provider = '".$oauth_provider."' AND u.oauth_uid = '".$oauth_uid."'") or die(mysqli_error($this->connect));
+	function updatePrediction($oauth_provider, $oauth_uid, $data, $result){
+		$update_person = mysqli_query($this->connect,"UPDATE prediction_results p JOIN users u ON u.id = p.users_id SET p.data = '".$data."', p.result = '".$result."', p.predict_date = '".date("Y-m-d H:i:s")."' WHERE u.oauth_provider = '".$oauth_provider."' AND u.oauth_uid = '".$oauth_uid."'") or die(mysqli_error($this->connect));
+		//return true;
+	}
+
+	function retakePredict($oauth_provider, $oauth_uid) {
+		$retake_predict = mysqli_query($this->connect,"UPDATE prediction_type p JOIN users u ON u.id = p.users_id SET p.type = null WHERE u.oauth_provider = '".$oauth_provider."' AND u.oauth_uid = '".$oauth_uid."'") or die(mysqli_error($this->connect));
+	}
+
+	function getPredictType($oauth_provider, $oauth_uid) {
+		$query = mysqli_query($this->connect,"SELECT p.type FROM prediction_type p JOIN users u ON u.id = p.users_id WHERE u.oauth_provider = '".$oauth_provider."' AND u.oauth_uid = '".$oauth_uid."'") or die(mysqli_error($this->connect));
 		$result = mysqli_fetch_assoc($query);
-		return $result;
+		return $result['type'];
+	}
+
+	function getUserInfo($oauth_provider, $oauth_uid, $type){
+		$query = "";
+		if ($type == 'test') {
+			$query = mysqli_query($this->connect,"SELECT p.primary_result AS result FROM personality p JOIN users u ON u.id = p.users_id WHERE u.oauth_provider = '".$oauth_provider."' AND u.oauth_uid = '".$oauth_uid."'") or die(mysqli_error($this->connect));
+		} else if ($type == 'auto') {
+			$query = mysqli_query($this->connect,"SELECT p.result FROM prediction_result p JOIN users u ON u.id = p.users_id WHERE u.oauth_provider = '".$oauth_provider."' AND u.oauth_uid = '".$oauth_uid."'") or die(mysqli_error($this->connect));
+		}
+		$result = mysqli_fetch_assoc($query);
+		return $result['result'];
 	}
 	
 	function getListWinnerGA() {
@@ -49,14 +71,5 @@ class Users {
 		return $result;
 	}
 	
-	function selectUserId($step1, $step2) {
-		$query = mysqli_query($this->connect,"SELECT u.oauth_uid FROM personality p join users u on p.users_id = u.id where p.traits is not null and u.id between ".$step1." and ".$step2) or die(mysqli_error($this->connect));
-		$result = mysqli_fetch_all($query);
-		return $result;
-	}
-
-	function updateProtected($oauth_uid, $username, $protected) {
-		$update_person = mysqli_query($this->connect,"UPDATE personality p JOIN users u ON u.id = p.users_id SET p.protected = '".$protected."', u.username = '".$username."' WHERE u.oauth_provider = 'twitter' AND u.oauth_uid = '".$oauth_uid."'") or die(mysqli_error($this->connect));
-	}
 }
 ?>

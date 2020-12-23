@@ -643,6 +643,7 @@ input#website {
 }
 
 /* Wizard Buttons*/
+button.back,
 button.backward,
 button.forward,
 button.submit {
@@ -670,6 +671,7 @@ button.submit {
   padding: 10px 30px 10px 30px;
 }
 
+button.back,
 button.backward {
   color: #333;
   background: #e8e8e8;
@@ -684,7 +686,7 @@ button.submit {
 button[disabled] {
   display: none;
 }
-
+button.back:before,
 button.backward:before {
   content: "\34";
   font-family: 'ElegantIcons';
@@ -712,6 +714,7 @@ button.submit:before {
   font-size: 18px;
 }
 
+.back:hover,
 .backward:hover,
 .forward:hover {
   background: #0073e5;

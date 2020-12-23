@@ -6,7 +6,7 @@
 	$profile_image_url  = '';
 	$tweet_count		= 0;
 	$personality_type   = 0; //dummy
-	$tested				= false; //dummy
+	$tested				= true; //dummy
 	$tweet_text			= urlencode('Yuk ketahui tipe temperamenmu dalam 5 menit! ada giveaway juga lho. Jangan sampai ga ikutan. #Testra2020 #Giveaway http://testra.masrizky.com/');
 	
 
@@ -27,49 +27,63 @@
 		$tweet_count		= $user_info->statuses_count;
 		$protected			= $user_info->protected;
 
-		//Retrieve test result
-		$personality_result = $db_user_info->getUserInfo($oauth_provider, $twitter_id);
-		$personality_type  	= $personality_result['primary_result'];
-		$tested = json_decode($personality_result['traits']) != null;
+		//Retrieve prediction type
+		$predict_type = $db_user_info->getPredictType($oauth_provider, $twitter_id);
+		if ($predict_type == '' || $predict_type == null) {
+			$tested = false;
+		} else {
+			$tested = true;
+			$personality_type = $db_user_info->getUserInfo($oauth_provider, $twitter_id, $predict_type);
+		}
 
 		if (!$tested && $act != 'test'){
 		    header("Location: $url/?p=personality&act=test");
 		} else if ($tested && $act == 'test'){
 		    header("Location: $url/?p=personality");
+		} else if ($tested && $act == 'retake'){
+			$db_user_info->retakePredict($oauth_provider, $twitter_id);
+			header("Location: $url/?p=personality&act=test");
 		}
 
 		//form submitted
 		if ($_POST && $act =='test') {
 
-			//store answer in array
-			$answer = array();
-			for ($i=0; $i < 40; $i++) { 
-				array_push($answer, $_POST['answer_'.$i]);
+			if (isset($_GET['type']) && $_GET['type'] == 'auto') {
+				// save to db
+				$db_user_info->updatePrediction($oauth_provider, $twitter_id, $_POST['data'], $_POST['result']);
+				header("Location: $url/?p=personality");
+			} else {
+				//store answer in array
+				$answer = array();
+				for ($i=0; $i < 40; $i++) { 
+					array_push($answer, $_POST['answer_'.$i]);
+				}
+
+				//convert array to string
+				$s_answer = json_encode($answer);
+
+				//get primary result
+				$result = array_count_values($answer);
+				$primary_result = array_keys($result, max($result))[0];
+
+				//var_dump($primary_result);
+
+				//get secondary result
+				$temp = $result;
+				unset($temp[$primary_result]);
+				$secondary_result = array_keys($temp, max($temp))[0];
+
+				// echo "<br>primary result: ".$primary_result;
+				// echo "<br>secondary result: ".$secondary_result;
+
+				//get timer count
+				$timer_result = $_POST['timer'];
+				//echo '<br> time : '.$timer_result;
+
+				// save to db
+				$db_user_info->updatePersonality($oauth_provider, $twitter_id, $s_answer, $result[0], $result[1], $result[2], $result[3], $primary_result, $secondary_result, $timer_result, $tweet_count, $protected);
+				header("Location: $url/?p=personality");
 			}
-	
-			//convert array to string
-			$s_answer = json_encode($answer);
-			
-			//get primary result
-			$result = array_count_values($answer);
-			$primary_result = array_keys($result, max($result))[0];
-
-			//var_dump($primary_result);
-			
-			//get secondary result
-			$temp = $result;
-			unset($temp[$primary_result]);
-			$secondary_result = array_keys($temp, max($temp))[0];
-	
-			// echo "<br>primary result: ".$primary_result;
-			// echo "<br>secondary result: ".$secondary_result;
-			
-			//get timer count
-			$timer_result = $_POST['timer'];
-			//echo '<br> time : '.$timer_result;
-
-			$db_user_info->updatePersonality($oauth_provider, $twitter_id, $s_answer, $result[0], $result[1], $result[2], $result[3], $primary_result, $secondary_result, $timer_result, $tweet_count, $protected);
-			header("Location: $url/?p=personality");
 		}
 	} else {
 		//Display login page
@@ -138,19 +152,6 @@
 		$personality_weakness	= $personality_traits[$personality_type]['weakness'];
 	}
 	
-// 	if ($act == 'updateProtected') {
-// 	    $list_id = $db_user_info->selectUserId(0,5);
-
-// 		$count_updt = 0;
-// 		foreach ($list_id as $key => $val) {
-// 			$c_protect = $connection->get('https://api.twitter.com/1.1/users/show.json?user_id='.$val[0]);
-// 			echo $val[0]." - ".$c_protect->screen_name." - ".$c_protect->protected."<br>";
-// 			//$db_user_info->updateProtected($val[0], $c_protect->screen_name, $c_protect->protected);
-// 			$count_updt++;
-// 		}
-// 		echo 'success update '.$count_updt.' user';
-// 		die();
-// 	}
 ?>
 <main>
 	<div class="container">
@@ -190,92 +191,94 @@
 						</div>
 					</div>
 
-					<!-- Selection method step -->
-					<div class="" id="select_method">
-						<div class="question_title">
-							<h3>Mau jenis tes yang mana?</h3>
-							<p>Pilih salah satu aja ya</p>
-						</div>
-						<div class="row justify-content-center mb-5">
-							<div class="col-lg-4">
-								<div class="item">
-									<input id="select_assessment" type="radio" name="selection_method" value="assessment">
-									<label for="select_assessment"><img src="img/web_development_icon_1.svg" alt=""><strong>Assessment</strong>Tes kepribadian berupa kuesioner singkat berisi 40 soal.</label>
+					<?php if (!$tested) { ?>
+						<!-- Selection method step -->
+						<div class="" id="select_method">
+							<div class="question_title">
+								<h3>Mau jenis tes yang mana?</h3>
+								<p>Pilih salah satu aja ya</p>
+							</div>
+							<div class="row justify-content-center mb-5">
+								<div class="col-lg-4">
+									<div class="item">
+										<input id="select_assessment" type="radio" name="selection_method" value="assessment">
+										<label for="select_assessment"><img src="img/web_development_icon_1.svg" alt=""><strong>Assessment</strong>Tes kepribadian berupa kuesioner singkat berisi 40 soal.</label>
+									</div>
+								</div>
+								<div class="col-lg-4">
+									<div class="item">
+										<input id="select_automatic" type="radio" name="selection_method" value="automatic">
+										<label for="select_automatic"><img src="img/web_development_icon_2.svg" alt=""><strong>Automatic</strong>Kepribadianmu akan dicari secara otomatis oleh sistem.</label>
+									</div>
 								</div>
 							</div>
-							<div class="col-lg-4">
-								<div class="item">
-									<input id="select_automatic" type="radio" name="selection_method" value="automatic">
-									<label for="select_automatic"><img src="img/web_development_icon_2.svg" alt=""><strong>Automatic</strong>Kepribadianmu akan dicari secara otomatis oleh sistem.</label>
-								</div>
-							</div>
+							<!-- /row-->
 						</div>
-						<!-- /row-->
-					</div>
-					<!-- /Selection method step -->
+						<!-- /Selection method step -->
 
-					<!-- Instruction step -->
-					<div class="step instruct" id="instruct_assessment">
-						<div id="instruction"></div>
-						<div class="question_title">
-							<h3>Instruksi</h3>
-							<p></p>
-						</div>
-						<div class="row justify-content-center">
-							<div class="col-lg-8">
-								<div class="box_general">
-									<h6>Bacalah petunjuk berikut sebelum memulai tes</h6>
-									<ol>
-										<li>Dalam masing-masing deret empat kata ke samping berikut ini, pilih salah satu kata yang paling sering cocok dengan dirimu.</li>
-										<li>Setiap kata memakai bahasa Inggris dan definisi dibawahnya memakai bahasa Indonesia</li>
-										<li>Pastikan kamu memilih di setiap baris soal.</li>
-										<li>Terdapat 40 baris soal (20 soal merupakan kekuatanmu dan 20 sisanya merupakan kelemahanmu) dengan masing-masing empat kata jawaban.</li>
-										<li>Tidak ada jawaban benar atau salah, jadi jujurlah pada saat memilih.</li>
-										<li>Jika kamu tidak yakin kata mana yang paling cocok, tanyakan pada teman atau keluargamu, dan pikirkan apa jawabanmu ketika dirimu masih anak-anak.</li>
-									</ol>
+						<!-- Instruction step -->
+						<div class="step instruct" id="instruct_assessment">
+							<div id="instruction"></div>
+							<div class="question_title">
+								<h3>Instruksi</h3>
+								<p></p>
+							</div>
+							<div class="row justify-content-center">
+								<div class="col-lg-8">
+									<div class="box_general">
+										<h6>Bacalah petunjuk berikut sebelum memulai tes</h6>
+										<ol>
+											<li>Dalam masing-masing deret empat kata ke samping berikut ini, pilih salah satu kata yang paling sering cocok dengan dirimu.</li>
+											<li>Setiap kata memakai bahasa Inggris dan definisi dibawahnya memakai bahasa Indonesia</li>
+											<li>Pastikan kamu memilih di setiap baris soal.</li>
+											<li>Terdapat 40 baris soal (20 soal merupakan kekuatanmu dan 20 sisanya merupakan kelemahanmu) dengan masing-masing empat kata jawaban.</li>
+											<li>Tidak ada jawaban benar atau salah, jadi jujurlah pada saat memilih.</li>
+											<li>Jika kamu tidak yakin kata mana yang paling cocok, tanyakan pada teman atau keluargamu, dan pikirkan apa jawabanmu ketika dirimu masih anak-anak.</li>
+										</ol>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					<!-- /Instruction step -->
-					
-					<!-- Question step -->
-					<?php 
-						//show option
-						for ($i=0; $i < $size; $i+=$q_step) {
-						?>
-							<div class="step <?php echo ($i == $size-$q_step) ? 'submit':''?>">
-								<div class="question-number"><?php echo ($i+$q_step); ?></div>
-								<div class="question_title">
-									<h3>Manakah yang merupakan <?php echo ($i < $size/2) ? 'kekuatanmu': 'kelemahanmu' ?>?</h3>
-									<p>Pilih salah satu pada tiap baris yang paling cocok dengan dirimu</p>
-								</div>
-									<?php
-										for ($k=0; $k < $q_step; $k++) { 
-											echo '<div class="row justify-content-center">'; //row
-											shuffle($number); //shuffle number
-											for ($j=0; $j < 4; $j++) {
-												//get assessment value from array
-												$profile = $assessment [ $type [ $number [$j] ] ] [$i+$k][0];
-												$desc    = $assessment [ $type [ $number [$j] ] ] [$i+$k][1];
-												?>
-													<div class="col-lg-3">
-														<div class="item">
-															<input id="<?php echo 'question_'.($i+$k).'_opt_'.$j ?>" name="<?php echo 'answer_'.($i+$k); ?>" type="radio" value="<?php echo $number [$j] ?>" class="required">
-															<label for="<?php echo 'question_'.($i+$k).'_opt_'.$j ?>"><strong><?php echo $profile ?></strong><?php echo $desc ?></label>
+						<!-- /Instruction step -->
+
+						<!-- Question step -->
+						<?php 
+							//show option
+							for ($i=0; $i < $size; $i+=$q_step) {
+							?>
+								<div class="step <?php echo ($i == $size-$q_step) ? 'submit':''?>">
+									<div class="question-number"><?php echo ($i+$q_step); ?></div>
+									<div class="question_title">
+										<h3>Manakah yang merupakan <?php echo ($i < $size/2) ? 'kekuatanmu': 'kelemahanmu' ?>?</h3>
+										<p>Pilih salah satu pada tiap baris yang paling cocok dengan dirimu</p>
+									</div>
+										<?php
+											for ($k=0; $k < $q_step; $k++) { 
+												echo '<div class="row justify-content-center">'; //row
+												shuffle($number); //shuffle number
+												for ($j=0; $j < 4; $j++) {
+													//get assessment value from array
+													$profile = $assessment [ $type [ $number [$j] ] ] [$i+$k][0];
+													$desc    = $assessment [ $type [ $number [$j] ] ] [$i+$k][1];
+													?>
+														<div class="col-lg-3">
+															<div class="item">
+																<input id="<?php echo 'question_'.($i+$k).'_opt_'.$j ?>" name="<?php echo 'answer_'.($i+$k); ?>" type="radio" value="<?php echo $number [$j] ?>" class="required">
+																<label for="<?php echo 'question_'.($i+$k).'_opt_'.$j ?>"><strong><?php echo $profile ?></strong><?php echo $desc ?></label>
+															</div>
 														</div>
-													</div>
-												<?php
+													<?php
+												}
+												echo '</div>';
+												echo '<hr class="style-two">';
 											}
-											echo '</div>';
-											echo '<hr class="style-two">';
-										}
-									?>
-								<!-- /row-->
-							</div>
-						<?php
-					} ?>
-					<!-- /Question step -->
+										?>
+									<!-- /row-->
+								</div>
+							<?php
+						} ?>
+						<!-- /Question step -->
+					<?php } ?>
 
 					<!-- Personality Result -->
 					<?php 
@@ -315,8 +318,10 @@
 														</div>
 													</div>
 
-													<!-- <h6 class="mt-5">Kamu tidak yakin dengan temperamenmu? tenang saja kamu bisa mengulanginya.</h6>
-													<a href="<?php //echo $url.'/?act=test'?>" class="btn btn-sm btn-success">Ulangi tes</a> -->
+													<h6 class="mt-5">Kamu tidak yakin dengan temperamenmu? tenang saja kamu bisa mengulanginya.</h6>
+													<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#retake">
+														Ulangi tes
+													</button>
 													<div class="row justify-content-center px-2">
 														<div class="col-12 col-lg-8"><h6 class="mt-5">Penasaran dengan tipe temperamen temanmu?</h6>
 														<a href="" class="twitter btn-custom" onclick="popUp=window.open('https://twitter.com/share?url=<?php echo $tweet_text;?>', 'popupwindow', 'scrollbars=yes,width=800,height=400');popUp.focus();return false"><i class="icon-twitter"></i> Tag temanmu untuk ikutan tes!</a></div>
@@ -332,11 +337,18 @@
 					<!-- /Personality Result -->
 				</div>
 				<!-- /middle-wizard -->
-				<div id="bottom-wizard">
-					<button type="button" name="backward" class="backward">Sebelumnya</button>
-					<button type="button" name="forward" class="forward">Selanjutnya</button>
-					<button type="submit" name="process" class="submit">Submit</button>
-				</div>
+				<?php
+					if (!$tested) {
+						?>
+							<div id="bottom-wizard">
+								<button type="button" name="back" class="back">Kembali</button>
+								<button type="button" name="backward" class="backward">Sebelumnya</button>
+								<button type="button" name="forward" class="forward">Selanjutnya</button>
+								<button type="submit" name="process" class="submit">Submit</button>
+							</div>
+						<?php
+					}
+				?>
 				<!-- /bottom-wizard -->
 			</form>
 		</div>
@@ -366,4 +378,26 @@
 			</div>
 		</div>
 	</div>
+</div>
+
+<!-- Modal : Retake test-->
+<!-- Modal -->
+<div class="modal fade" id="retake" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title" id="exampleModalLabel">Ulangi tes</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="modal-body">
+			Apakah kamu yakin ingin mengulang tes?
+		</div>
+		<div class="modal-footer">
+			<a href="?act=retake"><button type="button" class="btn btn-primary">Ulangi</button></a>
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
+		</div>
+		</div>
+  </div>
 </div>

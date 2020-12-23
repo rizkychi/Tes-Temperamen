@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_restful import Resource, Api, reqparse
 from flask_cors import CORS
+from waitress import serve
 from scripts.scrape import scrape
 from scripts.preprocess import preprocess
 from scripts.predict import predict
@@ -20,6 +21,9 @@ class Scrape(Resource):
         parser.add_argument('user', required=True)  # add arguments
         args = parser.parse_args()  # parse arguments to dictionary
 
+        # log 
+        print(f"Starting process (Scrape) for user : {args['user']}")
+
         # Return status
         return scrape(args['user']), 200 # return message and 200 OK code
     pass
@@ -30,6 +34,9 @@ class Preprocess(Resource):
         parser = reqparse.RequestParser()  # initialize
         parser.add_argument('user', required=True)  # add arguments
         args = parser.parse_args()  # parse arguments to dictionary
+
+        # log 
+        print(f"Starting process (cleaning) for user : {args['user']}")
 
         # Check if user exist
         if os.path.exists(f"temp/{args['user']}.json"):
@@ -45,6 +52,9 @@ class Predict(Resource):
         parser.add_argument('user', required=True)  # add arguments
         args = parser.parse_args()  # parse arguments to dictionary
 
+        # log 
+        print(f"Starting process (predict) for user : {args['user']}")
+
         # Check if user exist
         if os.path.exists(f"temp/{args['user']}.json"):
             return predict(args['user']), 200 # return data and 200 OK code
@@ -52,9 +62,10 @@ class Predict(Resource):
             return { 'message':'failed. user not exist' }, 401 # return message and 401 code
     pass
 
-api.add_resource(Scrape, '/scrape')  # '/users' is our entry point
-api.add_resource(Preprocess, '/preprocess')  # '/users' is our entry point
-api.add_resource(Predict, '/predict')  # '/users' is our entry point
+api.add_resource(Scrape, '/scrape')  # '/scrape' is our scraping point
+api.add_resource(Preprocess, '/preprocess')  # '/preprocess' is our preprocessing point
+api.add_resource(Predict, '/predict')  # '/predict' is our predicting point
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80)  # run our Flask app
+    app.run(host='0.0.0.0', port=80)  # run our Flask app in development mode
+    # serve(app, host="0.0.0.0", port=80) # deployment mode

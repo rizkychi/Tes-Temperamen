@@ -1,5 +1,5 @@
 # Library
-from preprocessing import cleaning, tokenization, stemming, stopWord, posTag, termFreq
+from scripts.preprocessing import cleaning, tokenization, stemming, stopWord, posTag, termFreq
 import json
 import sys
 

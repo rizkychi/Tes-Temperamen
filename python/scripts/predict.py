@@ -4,16 +4,19 @@ from sklearn.naive_bayes import GaussianNB
 import pandas as pd
 import json
 import sys
+import os
 
 def predict(val):
     
     # Create empty variable
     tweet = {}
+    data_pred = []
 
     # Open tweet data
     with open(f'temp/{val}.json', 'r') as f:
         temp = json.load(f)
-    tweet['data'].append(temp)
+    tweet['data'] = temp
+    data_pred.append(temp)
 
     # Open feature word
     with open(f'scripts/dataset_feature.json', 'r') as f:
@@ -35,13 +38,13 @@ def predict(val):
     gnb.fit(X_train, y_train.values.ravel())
 
     # -- Predict the target_label
-    prediction = gnb.predict(temp)
+    prediction = gnb.predict(data_pred)
 
     # Delete file temporary
     os.remove(f'temp/{val}.json')
 
     # Add prediction result to json
-    tweet['result'] = prediction
+    tweet['result'] = int(prediction[0])
 
     # Save status
     tweet['message'] = 'success'

@@ -33,3 +33,47 @@ CREATE TABLE `personality` (
  FOREIGN KEY (users_id) REFERENCES users(id) 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+create TABLE `valid_users`
+(
+    `id` int(11) not null AUTO_INCREMENT,
+    `users_id` int(11) not null,
+    `username` varchar(255) COLLATE utf8_unicode_ci not null,
+    `primary_result` int not null,
+    `status` int not null default 0,
+    PRIMARY KEY (id),
+    FOREIGN KEY (users_id) REFERENCES users(id)
+) ENGINE=INNODB DEFAULT charset=utf8 COLLATE=utf8_unicode_ci;
+
+create TABLE `tweets`
+(
+    `id` int(11) not null AUTO_INCREMENT,
+    `users_id` int(11) not null,
+    `username` varchar(255) COLLATE utf8_unicode_ci not null,
+    `tweet` TEXT,
+    PRIMARY KEY (id),
+    FOREIGN KEY (users_id) REFERENCES users(id)
+) ENGINE=INNODB DEFAULT charset=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+create TABLE `filter_users`
+(
+    `users_id` int(11) not null,
+    `result` int not null,
+    `tweet_count` int not null,
+    FOREIGN KEY (users_id) REFERENCES users(id)
+) ENGINE=INNODB DEFAULT charset=utf8 COLLATE=utf8_unicode_ci;
+
+create TABLE `prediction_results`
+(
+    `users_id` int(11) not null,
+    `data` TEXT default null,
+    `result` int default null,
+    `predict_date` datetime default null,
+    FOREIGN KEY (users_id) REFERENCES users(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+create TABLE `prediction_type`
+(
+    `users_id` int(11) not null,
+    `type` varchar(4) default null,
+    FOREIGN KEY (users_id) REFERENCES users(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

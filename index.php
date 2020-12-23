@@ -30,6 +30,8 @@
 			header("Location: $url/twitterlogin/process.php");
 		} else if ($act == 'test') {
 			$page = 'personality';
+		} else if ($act == 'retake') {
+			$page = 'personality';
 		}
 	} else {
 		$act = '';
@@ -108,14 +110,6 @@
 	</div><!-- /loader_form -->
 
 	<div id="processLoading">
-		<!-- <div class="processContainer">
-			<h1 class="display-4">Tunggu sebentar ya</h1>
-			<div class="text-center">
-				<div class="spinner-border" role="status">
-					<span class="sr-only">Loading...</span>
-				</div>
-			</div>
-		</div> -->
 		<div class="container d-flex h-100">
 			<div class="row justify-content-center align-self-center w-100">
 				<div class="col text-center">
@@ -125,7 +119,7 @@
 							<span class="sr-only">Loading...</span>
 						</div>
 						<!-- <img src="img/ame-roll.gif" alt=""> -->
-					<h5 id="process_status">some text<span id="process_dot"></span></h5>
+					<h5><span id="process_status">some text</span><span id="process_dot"></span></h5>
 				</div>
 			</div>
 		</div>
@@ -186,37 +180,14 @@
     <script src="js/common_scripts.min.js"></script>
 	<script src="js/menu.js"></script>
 	<script src="js/main.js"></script>
-	<script src="js/wizard_func_without_branch.js"></script>	
+	<script src="js/wizard_func_without_branch.js"></script>
+	<script src="js/custom.js"></script>
 	
 	<script>
 		var time = 0;
 		function timer() {
 			time++;
 			$("#timer").val(time);
-		}
-
-		function showProgress(val) {
-			if (val == 0) {
-				$("#progressInfo").css('visibility', 'hidden');
-				$("#progressInfo").addClass('shrink-height');
-				$(".forward").text('Mulai');
-			} else {
-				$("#progressInfo").css('visibility', 'visible');
-				$("#progressInfo").removeClass('shrink-height');
-				$(".forward").text('Selanjutnya');
-			}
-		}
-
-		function switch_method(val) {
-			if (val == true) {
-				$("#select_method").show();
-				$("#instruct_assessment").hide();
-				$("#bottom-wizard").hide();
-			} else {
-				$("#select_method").hide();
-				$("#instruct_assessment").show();
-				$("#bottom-wizard").show();
-			}
 		}
 		
 		$(document).ready(function(){
@@ -269,18 +240,14 @@
 					isStart = true;
 					myTimer = setInterval(timer ,1000);	
 				}
+				$(".back").hide();
 			});
 
-			<?php 
-				if ($act == 'test'){
-					echo   '$("#bottom-wizard").show();
-							$("#personalityResult").hide();';
-				} else {
-					echo   '$(".step").hide();
-							$("#bottom-wizard").hide();
-							$("#personalityResult").show();';
+			$(".backward").click(function(){
+				if ($(".current").children('.question-number').text() == 0) {
+					$(".back").show();
 				}
-			?>
+			});
 
 			// selection method
 			switch_method(true);
@@ -296,22 +263,30 @@
 				$(this).prop('checked', false);
 			});
 
+			$('.back').click(function() {
+				switch_method(true);
+			});
+
 			// process : automatic method
 			$("#btnStartAutomatic").click(function() {
 				$('#processLoading').fadeIn('slow'); 
-				startProcess();
-			})
 
-			// dot waiting
-			var dotContent = "";
-			var dotTimer = setInterval(function() {
-				if (dotContent.length >= 3) {
-					dotContent = '';
-				} else {
-					dotContent += '.';
-				} 
-				$("#process_dot").text(dotContent);
-			}, 1000);
+				// dot waiting
+				var dotContent = "";
+				var dotTimer = setInterval(function() {
+					if (dotContent.length >= 3) {
+						dotContent = '';
+					} else {
+						dotContent += '.';
+					} 
+					$("#process_dot").text(dotContent);
+				}, 1000);
+
+				// start process
+				var username = '<?php echo $twitter_username; ?>';
+				var api = '<?php echo $python_path; ?>';
+				scrape(username, api);
+			});
 
 			<?php
 				//show modal dialog
@@ -321,43 +296,7 @@
 			?>
 		});
 
-		function startProcess() {
-			// if (scrape("chaesaroid") == 'OK') {
-			// 	// if (cleaning() == 'ok') {
-			// 	// 	if (predict() == 'ok') {
-			// 	// 		alert('done');
-			// 	// 	}
-			// 	// }
-			// 	console.log("OK")
-			// }
-			scrape("chaesaroid");
-		}
-
-		function scrape(val) {
-			$("#process_status").text("Mengunduh tweet pengguna");
-			$.ajax({
-					url: "<?php echo $python_path;?>scrape?=chaesaroid",
-					type: "POST",
-					//data: { user: val } ,
-					dataType: 'json', // added data type
-					success: function (response) {
-						console.log(response);
-						cleaning();
-					}
-			});
-		}
-
-		function cleaning(val) {
-			$("#process_status").text("Membersihkan dan mengubah tweet");
-			//alert("cleaning");
-			return "ok";
-		}
-
-		function predict(val) {
-			$("#process_status").text("Memprediksi jenis kepribadian pengguna");
-			//alert("predict");
-			return "ok";
-		}
+		
 	</script>
 	
 </body>
