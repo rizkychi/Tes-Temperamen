@@ -6,7 +6,7 @@
 	$profile_image_url  = '';
 	$tweet_count		= 0;
 	$personality_type   = 0; //dummy
-	$tested				= true; //dummy
+	$tested				= false; //dummy
 	$tweet_text			= urlencode('Yuk ketahui tipe temperamenmu dalam 5 menit! ada giveaway juga lho. Jangan sampai ga ikutan. #Testra2020 #Giveaway http://testra.masrizky.com/');
 	
 
@@ -87,7 +87,7 @@
 		}
 	} else {
 		//Display login page
-		//header("Location: $url/?p=login");
+		header("Location: $url/?p=login");
 	}
 
 	//PERSONALITY QUESTION

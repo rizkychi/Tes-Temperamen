@@ -23,7 +23,8 @@ class Scrape(Resource):
 
         # log 
         print(f"Starting process (Scrape) for user : {args['user']}")
-
+        print('- OK')
+        
         # Return status
         return scrape(args['user']), 200 # return message and 200 OK code
     pass
@@ -40,8 +41,10 @@ class Preprocess(Resource):
 
         # Check if user exist
         if os.path.exists(f"temp/{args['user']}.json"):
+            print('- OK')
             return preprocess(args['user']), 200 # return data and 200 OK code
         else:
+            print('- Failed')
             return { 'message':'failed. user not exist' }, 401 # return message and 401 code
     pass
 
@@ -57,8 +60,10 @@ class Predict(Resource):
 
         # Check if user exist
         if os.path.exists(f"temp/{args['user']}.json"):
+            print('- OK')
             return predict(args['user']), 200 # return data and 200 OK code
         else:
+            print('- Failed')
             return { 'message':'failed. user not exist' }, 401 # return message and 401 code
     pass
 
@@ -67,5 +72,5 @@ api.add_resource(Preprocess, '/preprocess')  # '/preprocess' is our preprocessin
 api.add_resource(Predict, '/predict')  # '/predict' is our predicting point
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80)  # run our Flask app in development mode
-    # serve(app, host="0.0.0.0", port=80) # deployment mode
+    # app.run(host='0.0.0.0', port=80)  # run our Flask app in development mode
+    serve(app, host="0.0.0.0", port=5000, url_scheme="https") # deployment mode

@@ -83,7 +83,7 @@ function predict(val, url) {
             success: function (response) {
                 // console.log(response);
                 if (response['message'] == 'success') {
-                    
+                    insertDb(response);
                 }
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) { 
@@ -98,7 +98,7 @@ function predict(val, url) {
 function insertDb(val) {
     updateProcess("Menyimpan hasil ke database");
     $.ajax({
-        url: '/?act=test&type=auto',
+        url: '?act=test&type=auto',
         type: 'POST',
         data:{
             'data': val['data'],
