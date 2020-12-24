@@ -48,11 +48,8 @@
 		//form submitted
 		if ($_POST && $act =='test') {
 
-			if (isset($_GET['type']) && $_GET['type'] == 'auto') {
-				// save to db
-				$db_user_info->updatePrediction($oauth_provider, $twitter_id, $_POST['data'], $_POST['result']);
-				header("Location: $url/?p=personality");
-			} else {
+			if (!(isset($_GET['type']) && $_GET['type'] == 'auto')) {
+
 				//store answer in array
 				$answer = array();
 				for ($i=0; $i < 40; $i++) { 

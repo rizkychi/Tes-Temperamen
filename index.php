@@ -22,12 +22,19 @@
 	if (isset($_GET['act'])) {
 		$act = $_GET['act'];
 
+		if (isset($_GET['type'])) {
+			$test_type = $_GET['type'];
+		}
+
 		if ($act == 'logout') {
 			unset($_SESSION['userdata']);
 			session_destroy();
 			header("Location: $url/?p=home");
 		} else if ($act == 'login') {
 			header("Location: $url/twitterlogin/process.php");
+		} else if ($act == 'test' && $test_type == 'auto') {
+			include 'page/insertDbAuto.php';
+			die();
 		} else if ($act == 'test') {
 			$page = 'personality';
 		} else if ($act == 'retake') {
@@ -111,13 +118,14 @@
 
 	<div id="processLoading">
 		<div class="container d-flex h-100">
-			<div class="row justify-content-center align-self-center w-100">
+			<div class="justify-content-center align-self-center w-100">
 				<div class="col text-center">
 					<h1 class="display-4">Tunggu sebentar ya</h1>
 					<p>Jangan tutup jendela ini, mungkin prosesnya agak lama jadi tolong sabar. Ok?</p>
 						<div class="spinner-border text-primary mb-5 mt-3" style="width: 4rem; height: 4rem;" role="status">
 							<span class="sr-only">Loading...</span>
 						</div>
+						<img src="img/warning.svg" class="img-fluid icon-status mb-5 mt-3" style="width: 4rem; height: 4rem; display:none" alt="Warning">
 						<!-- <img src="img/ame-roll.gif" alt=""> -->
 					<h5><span id="process_status">some text</span><span id="process_dot"></span></h5>
 				</div>
@@ -271,17 +279,6 @@
 			$("#btnStartAutomatic").click(function() {
 				$('#processLoading').fadeIn('slow'); 
 
-				// dot waiting
-				var dotContent = "";
-				var dotTimer = setInterval(function() {
-					if (dotContent.length >= 3) {
-						dotContent = '';
-					} else {
-						dotContent += '.';
-					} 
-					$("#process_dot").text(dotContent);
-				}, 1000);
-
 				// start process
 				var username = '<?php echo $twitter_username; ?>';
 				var api = '<?php echo $python_path; ?>';
@@ -291,7 +288,7 @@
 			<?php
 				//show modal dialog
 				if ($page == 'home') {
-					echo '$("#modal-txt").modal();';
+					// echo '$("#modal-txt").modal();';
 				}
 			?>
 		});

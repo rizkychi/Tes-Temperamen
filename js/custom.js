@@ -1,3 +1,14 @@
+// dot waiting
+var dotContent = "";
+var dotTimer = setInterval(function() {
+    if (dotContent.length >= 3) {
+        dotContent = '';
+    } else {
+        dotContent += '.';
+    } 
+    $("#process_dot").text(dotContent);
+}, 1000);
+
 function showProgress(val) {
     if (val == 0) {
         $("#progressInfo").css('visibility', 'hidden');
@@ -24,6 +35,11 @@ function switch_method(val) {
 
 function updateProcess(val){
     $("#process_status").text(val);
+    if (val.includes("Maaf")) {
+        clearInterval(dotTimer);
+        $(".spinner-border").hide();
+        $(".icon-status").show();
+    }
 }
 
 function scrape(val, url) {
@@ -98,11 +114,25 @@ function predict(val, url) {
 function insertDb(val) {
     updateProcess("Menyimpan hasil ke database");
     $.ajax({
-        url: '?act=test&type=auto',
+        url: '?p=personality&act=test&type=auto',
         type: 'POST',
         data:{
-            'data': val['data'],
-            'result': val['result']
+            'data': JSON.stringify(val['data']),
+            'result': JSON.stringify(val['result'])
+        },
+        success: function (response) {
+            // console.log(response);
+            if (response == 'success') {
+                window.location = "?p=personality";
+            } else {
+                console.log(response);
+                updateProcess('Maaf terjadi kesalahan, kamu bisa refresh halaman untuk mengulangi!');
+            }
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) { 
+            console.log("Status: " + textStatus);
+            console.log("Error: " + errorThrown); 
+            updateProcess('Maaf terjadi kesalahan, kamu bisa refresh halaman untuk mengulangi!');
         }
     });
 }

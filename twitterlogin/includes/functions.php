@@ -41,9 +41,13 @@ class Users {
 	}
 
 	function updatePrediction($oauth_provider, $oauth_uid, $data, $result){
+		$state = false;
 		$update_person = mysqli_query($this->connect,"UPDATE prediction_results p JOIN users u ON u.id = p.users_id SET p.data = '".$data."', p.result = '".$result."', p.predict_date = '".date("Y-m-d H:i:s")."' WHERE u.oauth_provider = '".$oauth_provider."' AND u.oauth_uid = '".$oauth_uid."'") or die(mysqli_error($this->connect));
-		//return true;
-		$this->updateType($oauth_provider, $oauth_uid, 'auto');
+		if ($update_person) {
+			$this->updateType($oauth_provider, $oauth_uid, 'auto');
+			$state = true;
+		} 
+		return $state;
 	}
 
 	function updateType($oauth_provider, $oauth_uid, $type) {
@@ -65,7 +69,7 @@ class Users {
 		if ($type == 'test') {
 			$query = mysqli_query($this->connect,"SELECT p.primary_result AS result FROM personality p JOIN users u ON u.id = p.users_id WHERE u.oauth_provider = '".$oauth_provider."' AND u.oauth_uid = '".$oauth_uid."'") or die(mysqli_error($this->connect));
 		} else if ($type == 'auto') {
-			$query = mysqli_query($this->connect,"SELECT p.result FROM prediction_result p JOIN users u ON u.id = p.users_id WHERE u.oauth_provider = '".$oauth_provider."' AND u.oauth_uid = '".$oauth_uid."'") or die(mysqli_error($this->connect));
+			$query = mysqli_query($this->connect,"SELECT p.result FROM prediction_results p JOIN users u ON u.id = p.users_id WHERE u.oauth_provider = '".$oauth_provider."' AND u.oauth_uid = '".$oauth_uid."'") or die(mysqli_error($this->connect));
 		}
 		$result = mysqli_fetch_assoc($query);
 		return $result['result'];
