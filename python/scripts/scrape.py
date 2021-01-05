@@ -18,11 +18,12 @@ def scrape(val):
     c = twint.Config()
     c.Store_object    = True
     c.Hide_output     = True
-    c.Limit           = 5000
+    c.Limit           = 100
     c.Custom['tweet'] = ['tweet']
     c.Search          = f'from:{val} lang:id'
 
     # Run Twint
+    twint.output.tweets_list.clear()
     twint.run.Search(c)
     raw = twint.output.tweets_list
 
