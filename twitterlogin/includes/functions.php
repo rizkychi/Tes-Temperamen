@@ -24,9 +24,10 @@ class Users {
 			$update = mysqli_query($this->connect,"UPDATE $this->tableName SET username = '".$username."', oauth_token = '".$oauth_token."', oauth_secret = '".$oauth_secret."', modified = '".date("Y-m-d H:i:s")."' WHERE oauth_provider = '".$oauth_provider."' AND oauth_uid = '".$oauth_uid."'") or die(mysqli_error($this->connect));
 		}else{
 			$insert = mysqli_query($this->connect,"INSERT INTO $this->tableName SET oauth_provider = '".$oauth_provider."', oauth_uid = '".$oauth_uid."', username = '".$username."', fname = '".$fname."', lname = '".$lname."', locale = '".$locale."', oauth_token = '".$oauth_token."', oauth_secret = '".$oauth_secret."', picture = '".$profile_image_url."', created = '".date("Y-m-d H:i:s")."', modified = '".date("Y-m-d H:i:s")."'") or die(mysqli_error($this->connect));
-			$insertPersonality = mysqli_query($this->connect,"INSERT INTO personality SET users_id =  ".mysqli_insert_id($this->connect).", created = '".date("Y-m-d H:i:s")."', modified = '".date("Y-m-d H:i:s")."'") or die(mysqli_error($this->connect));
-			$insertPrediction_result = mysqli_query($this->connect,"INSERT INTO prediction_results SET users_id =  ".mysqli_insert_id($this->connect)) or die(mysqli_error($this->connect));
-			$insertPrediction_type = mysqli_query($this->connect,"INSERT INTO prediction_type SET users_id =  ".mysqli_insert_id($this->connect)) or die(mysqli_error($this->connect));
+			$inserted_id = mysqli_insert_id($this->connect);
+			$insertPersonality = mysqli_query($this->connect,"INSERT INTO personality SET users_id =  ".$inserted_id.", created = '".date("Y-m-d H:i:s")."', modified = '".date("Y-m-d H:i:s")."'") or die(mysqli_error($this->connect));
+			$insertPrediction_result = mysqli_query($this->connect,"INSERT INTO prediction_results SET users_id =  ".$inserted_id) or die(mysqli_error($this->connect));
+			$insertPrediction_type = mysqli_query($this->connect,"INSERT INTO prediction_type SET users_id =  ".$inserted_id) or die(mysqli_error($this->connect));
 		}
 		
 		$query = mysqli_query($this->connect,"SELECT * FROM $this->tableName WHERE oauth_provider = '".$oauth_provider."' AND oauth_uid = '".$oauth_uid."'") or die(mysqli_error($this->connect));
