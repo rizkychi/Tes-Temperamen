@@ -8,3 +8,4 @@ Aplikasi untuk mengetahui tipe temperamen/kepribadian.
 - PySastrawi
 - NLP_ID
 
+Demo: [Here](https://testra.masrizky.com/)
